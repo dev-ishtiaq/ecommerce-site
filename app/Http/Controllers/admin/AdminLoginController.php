@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AdminLoginController extends Controller
@@ -19,6 +20,31 @@ class AdminLoginController extends Controller
         ]);
 
         if($validator->passes()) {
+            if(Auth::guard('admin')->attempt([
+                'email' => $request->email,
+                'password' => $request->password
+            ], $request->get('remember')))
+            {
+                $admin = Auth::guard('admin')->user();
+
+                if($admin->role == 1)
+                {
+                    return redirect()->route('admin.dashboard');
+                }
+                else
+                {
+                    Auth::guard('admin')->logout();
+                    return redirect()->route('admin.login')->with('error', 'Your are not authorised to access admin panel');
+
+                }
+
+
+            }
+            else
+            {
+                return redirect()->route('admin.login')->with('error', 'Your email/password is incorrect!');
+            }
+
 
         }
         else {
@@ -29,4 +55,5 @@ class AdminLoginController extends Controller
         }
 
     }
+    
 }
