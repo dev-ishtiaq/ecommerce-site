@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use App\Models\Category;
 class CategoryController extends Controller
 {
     public function index()
@@ -23,11 +23,26 @@ class CategoryController extends Controller
             'slug' => 'required|unique:categories',
 
         ]);
+
         if($validator->passes()){
+
+            $category = new Category();
+            $category->name = $request->name;
+            $category->slug = $request->slug;
+            $category->status = $request->status;
+            $category->save();
+
+            $request->session()->flash('success', 'Category Added Successfully');
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Category Added Successfully'
+            ]);
+
 
         } else {
             return response()->json([
-                'status' => true,
+                'status' => false,
                 'errors' => $validator->errors()
             ]);
         }
