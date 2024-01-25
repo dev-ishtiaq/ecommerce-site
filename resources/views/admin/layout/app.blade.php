@@ -173,6 +173,8 @@
     <script src="{{asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('admin/js/adminlte.min.js')}}"></script>
+    {{-- dropzone --}}
+    <script src="{{asset('admin/plugins/dropzone/min/dropzone.min.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('admin/js/demo.js')}}"></script>
     <script type="text/javascript">
