@@ -167,6 +167,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($categoryId);
         if(empty($category))
+        $request->session()->flash('error', 'Category Not fount');
         return response()->json([
             'status' => true,
             'message' => 'Category Not fount'
