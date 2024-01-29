@@ -169,7 +169,7 @@ class CategoryController extends Controller
         if(empty($category))
         return response()->json([
             'status' => true,
-            'message' => 'Category Deleted Successfully'
+            'message' => 'Category Not fount'
         ]);
         {
             return redirect()->route('categories.index');
@@ -179,7 +179,10 @@ class CategoryController extends Controller
 
         $request->session()->flash('success', 'Category Deleted Successfully');
 
-        
+        return response()->json([
+            'status' => true,
+            'message' => 'Category Deleted Successfully'
+        ]);
     }
 }
 
