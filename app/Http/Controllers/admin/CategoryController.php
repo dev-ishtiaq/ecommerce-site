@@ -167,6 +167,10 @@ class CategoryController extends Controller
     {
         $category = Category::find($categoryId);
         if(empty($category))
+        return response()->json([
+            'status' => true,
+            'message' => 'Category Deleted Successfully'
+        ]);
         {
             return redirect()->route('categories.index');
         }
@@ -175,10 +179,7 @@ class CategoryController extends Controller
 
         $request->session()->flash('success', 'Category Deleted Successfully');
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Category Deleted Successfully'
-        ]);
+        
     }
 }
 
