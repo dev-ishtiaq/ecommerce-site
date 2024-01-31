@@ -89,14 +89,25 @@ class CategoryController extends Controller
         if(empty($category))
         {
             return redirect()->route('categories.index');
+
+            return response()->json([
+                'status' => false,
+                'notfound' => true,
+                'message' => 'Category not found'
+            ]);
         }
         return view('admin.category.edit', compact('category'));
     }
+
+
     public function update (Request $request, $categoryId)
     {
         $category = Category::find($categoryId);
+
             if(empty($category))
             {
+
+                $request->session()->flash('error', 'Category not found');
                 return response()->json([
                     'status' => false,
                     'notfound' => true,
@@ -163,18 +174,21 @@ class CategoryController extends Controller
             }
 
     }
-    public function destroy($categoryId, Request $request)
+    public function destroy(Request $request, $categoryId)
     {
         $category = Category::find($categoryId);
+
         if(empty($category))
-        $request->session()->flash('error', 'Category Not fount');
+        {
+         $request->session()->flash('error', 'Category Not found');
         return response()->json([
             'status' => true,
-            'message' => 'Category Not fount'
+            'message' => 'Category Not found'
         ]);
-        {
-            return redirect()->route('categories.index');
+
         }
+
+
         File::delete(public_path().'/uploads/category/'.$category->image);
         $category->delete();
 

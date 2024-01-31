@@ -27,21 +27,22 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="name">Name</label>
-                                <input type="text" value="{{$category->name}}" name="name" id="name" class="form-control" placeholder="Name">
+                                <input type="text" value="{{$category->name}}" name="name" id="name"
+                                    class="form-control" placeholder="Name">
                                 <p></p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="slug">Slug</label>
-                                <input type="text" value="{{$category->slug}}" readonly name="slug" id="slug" class="form-control"
-                                    placeholder="Slug">
+                                <input type="text" value="{{$category->slug}}" readonly name="slug" id="slug"
+                                    class="form-control" placeholder="Slug">
                                 <p></p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3" id="">
-                            <input type="hidden" id="image_id" name="image_id" value="">
+                                <input type="hidden" id="image_id" name="image_id" value="">
                                 <label for="image">Image</label>
                                 <div id="image" class="dropzone dz-clickable">
                                     <div class="dz-message needsclick">
@@ -103,6 +104,9 @@
                         .siblings('p')
                         .removeClass('invalid-feedback').html("");
                 } else {
+                    if (response["notfound"] == true) {
+                        window.location.href = "{{route('categories.index')}}";
+                    }
                     var errors = response['errors'];
                     if (errors['name']) {
                         $("#name").addClass('is-invalid')

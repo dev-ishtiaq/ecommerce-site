@@ -2,6 +2,7 @@
 @section('main')
 <section class="content-header">
     <div class="container-fluid my-2">
+        @include('admin.message')
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h1>Categories</h1>
@@ -81,7 +82,7 @@
                                         </path>
                                     </svg>
                                 </a>
-                                <a href="#" onclick="deleteCategory({{$category->id}})"
+                                <a href="{{route('categories.destroy', $category->id)}}" onclick="deleteCategory({{$category->id}})"
                                     class="text-danger w-4 h-4 mr-1">
                                     <svg wire:loading.remove.delay="" wire:target=""
                                         class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +129,7 @@
         var newUrl = url.replace("ID", id);
         if (confirm('Are you sure to delete this category!')) {
             $.ajax({
-                url: 'newUrl',
+                url: newUrl,
                 type: 'delete',
                 data: {},
                 dataType: 'json',
@@ -136,8 +137,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(response) {
-                    $('button[type=submit]').prop('disabled', false);
-                    if (response["status"]) {
+                        if (response["status"]) {
                         window.location.href = "{{route('categories.index')}}";
                     }
 
