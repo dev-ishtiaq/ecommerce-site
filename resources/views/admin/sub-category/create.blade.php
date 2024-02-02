@@ -28,7 +28,7 @@
                             <div class="mb-3">
                                 <label for="name">Name</label>
                                 <select name="category" id="category" class="form-control">
-                                    
+                                    @if($category)
                                 </select>
                             </div>
                         </div>
