@@ -28,7 +28,11 @@
                             <div class="mb-3">
                                 <label for="name">Name</label>
                                 <select name="category" id="category" class="form-control">
-                                    @if($category)
+                                    @if($categories->isNotEmpty())
+                                    @foreach($categories as $key => $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
