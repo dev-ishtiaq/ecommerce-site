@@ -47,6 +47,7 @@ Route::group(['prefix' => 'admin'], function()
 
         // sub category routes
         Route::get('/sub-categories/create',[SubCategoryController:: class, 'create'])->name('sub-categories.create');
+        Route::post('/sub-categories',[SubCategoryController:: class, 'store'])->name('sub-categories.store');
 
 
         // temp image

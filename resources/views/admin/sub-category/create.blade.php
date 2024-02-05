@@ -20,13 +20,13 @@
 <section class="content">
     <!-- Default box -->
     <div class="container-fluid">
-        <form action="" method="post" id="categoryForm" name="categoryForm">
+        <form action="" method="post" id="subCategoryForm" name="subCategoryForm">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="name">Name</label>
+                                <label for="name">Category</label>
                                 <select name="category" id="category" class="form-control">
                                     @if($categories->isNotEmpty())
                                     @foreach($categories as $key => $category)
@@ -34,6 +34,7 @@
                                     @endforeach
                                     @endif
                                 </select>
+                                <p></p>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -85,5 +86,74 @@
 @endsection
 
 @section('customjs')
+<script>
+    $("#subCategoryForm").submit(function(event) {
+        event.preventDefault();
+        var element = $(this);
+        $('button[type=submit]').prop('disabled', true);
+        $.ajax({
+            url: '{{route("sub-categories.store")}}',
+            type: 'post',
+            data: element.serializeArray(),
+            dataType: 'json',
+            success: function(response) {
+                $('button[type=submit]').prop('disabled', false);
+                if (response["status"] == true) {
+                    window.location.href = "{{route('sub-categories.create')}}";
+                    $("#name").removeClass('is-invalid')
+                        .siblings('p')
+                        .removeClass('invalid-feedback').html("");
+                    $("#slug").removeClass('is-invalid')
+                        .siblings('p')
+                        .removeClass('invalid-feedback').html("");
+                } else {
+                    var errors = response['errors'];
+                    if (errors['name']) {
+                        $("#name").addClass('is-invalid')
+                            .siblings('p')
+                            .addClass('invalid-feedback').html(errors['name']);
+                    } else {
+                        $("#name").removeClass('is-invalid')
+                            .siblings('p')
+                            .removeClass('invalid-feedback').html("");
+                    }
+                    if (errors['slug']) {
+                        $("#slug").addClass('is-invalid')
+                            .siblings('p')
+                            .addClass('invalid-feedback').html(errors['slug']);
+                    } else {
+                        $("#slug").removeClass('is-invalid')
+                            .siblings('p')
+                            .removeClass('invalid-feedback').html("");
+                    }
+                }
+            },
+            error: function(jqXHR, exception) {
+                console.log("something went wrong");
+            }
+        })
+    })
 
+    // get slug
+    $("#name").change(function() {
+        element = $(this);
+        $('button[type=submit]').prop('disabled', true);
+        $.ajax({
+            url: '{{route("getSlug")}}',
+            type: 'get',
+            data: {
+                title: element.val()
+            },
+            dataType: 'json',
+            success: function(response) {
+                $('button[type=submit]').prop('disabled', false);
+                if (response["status"] == true) {
+                    $("#slug").val(response["slug"]);
+                }
+            }
+        });
+    });
+
+    
+</script>
 @endsection
