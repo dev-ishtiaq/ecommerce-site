@@ -28,6 +28,7 @@
                             <div class="mb-3">
                                 <label for="name">Category</label>
                                 <select name="category" id="category" class="form-control">
+                                    <option value="">Select a Category</option>
                                     @if($categories->isNotEmpty())
                                     @foreach($categories as $key => $category)
                                     <option value="{{$category->id}}">{{$category->name}}</option>
