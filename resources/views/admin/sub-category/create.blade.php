@@ -118,7 +118,7 @@
                             .siblings('p')
                             .removeClass('invalid-feedback').html("");
                     }
-                    if (errors['slug']) {
+                    if (errors['category']) {
                         $("#slug").addClass('is-invalid')
                             .siblings('p')
                             .addClass('invalid-feedback').html(errors['slug']);
