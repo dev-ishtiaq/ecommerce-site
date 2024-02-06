@@ -28,7 +28,7 @@
                             <div class="mb-3">
                                 <label for="name">Category</label>
                                 <select name="category" id="category" class="form-control">
-                                    <option value="">Select a Category</option>
+                                    <option value="">Select a Categoryy</option>
                                     @if($categories->isNotEmpty())
                                     @foreach($categories as $key => $category)
                                     <option value="{{$category->id}}">{{$category->name}}</option>
@@ -118,12 +118,21 @@
                             .siblings('p')
                             .removeClass('invalid-feedback').html("");
                     }
-                    if (errors['category']) {
+                    if (errors['slug']) {
                         $("#slug").addClass('is-invalid')
                             .siblings('p')
                             .addClass('invalid-feedback').html(errors['slug']);
                     } else {
                         $("#slug").removeClass('is-invalid')
+                            .siblings('p')
+                            .removeClass('invalid-feedback').html("");
+                    }
+                    if (errors['category']) {
+                        $("#category").addClass('is-invalid')
+                            .siblings('p')
+                            .addClass('invalid-feedback').html(errors['category']);
+                    } else {
+                        $("#category").removeClass('is-invalid')
                             .siblings('p')
                             .removeClass('invalid-feedback').html("");
                     }
