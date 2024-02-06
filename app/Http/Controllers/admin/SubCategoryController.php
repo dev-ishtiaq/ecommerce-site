@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 use App\Models\Category;
+use App\Models\SubCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -22,6 +23,19 @@ class SubCategoryController extends Controller
             'status' => 'required'
         ]);
         if ($validator->passes()) {
+            $subCategory = new SubCategory();
+            $subCategory->name = $request->name;
+            $subCategory->slug = $request->slug;
+            $subCategory->status = $request->status;
+            $subCategory->category_id = $request->category;
+            $subCategory->save();
+
+            $request->session()->flash('success', 'Sub category created successfully!');
+
+            return response([
+                'status' => true,
+                'message' => 'Sub category created successfully!',
+            ]);
 
         } else {
             return response([
