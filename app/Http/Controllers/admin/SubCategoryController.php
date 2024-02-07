@@ -9,6 +9,18 @@ use Illuminate\Http\Request;
 
 class SubCategoryController extends Controller
 {
+    public function index(Request $request)
+    {
+        $SubCategories = SubCategory::latest('id');
+
+        if(!empty($request->get('keyword'))){
+            $SubCategories = $SubCategories->where('name', 'like', '%' .$request->get('keyword').'%' );
+        }
+
+        $SubCategories = $SubCategories->paginate(10);
+        $data['SubCategories'] =  $SubCategories;
+        return view('admin.sub-category.list', compact('SubCategories'));
+    }
     public function create ()
     {
         $categories = Category::orderBy('name', 'ASC')->get();
