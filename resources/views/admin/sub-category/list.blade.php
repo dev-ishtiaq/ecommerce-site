@@ -46,17 +46,19 @@
                             <th width="60">ID</th>
                             <th>Name</th>
                             <th>Slug</th>
+                            <th>Category</th>
                             <th width="100">Status</th>
                             <th width="100">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if($SubCategorie->isNotEmpty())
-                        @foreach ($SubCategorie as $subcategory)
+                        @if($SubCategories->isNotEmpty())
+                        @foreach ($SubCategories as $subcategory)
                         <tr>
-                            <td>{{$subcategory->id}}</td>
+                            <td>{{$loop->index+1}}</td>
                             <td>{{$subcategory->name}}</td>
                             <td>{{$subcategory->slug}}</td>
+                            <td>{{$subcategory->categoryName}}</td>
                             <td>
                                 @if ($subcategory->status == 1)
                                 <svg class="text-success-500 h-6 w-6 text-success" xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +76,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{route('categories.edit', $category->id)}}">
+                                <a href="{{route('sub-categories.edit', $subcategory->id)}}">
                                     <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path
@@ -82,7 +84,7 @@
                                         </path>
                                     </svg>
                                 </a>
-                                <a href="{{route('categories.destroy', $category->id)}}" onclick="deleteCategory({{$category->id}})"
+                                <a href="{{route('sub-categories.destroy', $subcategory->id)}}" onclick="deleteCategory({{$subcategory->id}})"
                                     class="text-danger w-4 h-4 mr-1">
                                     <svg wire:loading.remove.delay="" wire:target=""
                                         class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +107,7 @@
                 </table>
             </div>
             <div class="card-footer clearfix">
-                {{$categories->links()}}
+                {{$SubCategories->links()}}
                 {{-- <ul class="pagination pagination m-0 float-right">
                   <li class="page-item"><a class="page-link" href="#">«</a></li>
                   <li class="page-item"><a class="page-link" href="#">1</a></li>
