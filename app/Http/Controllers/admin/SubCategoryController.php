@@ -18,7 +18,7 @@ class SubCategoryController extends Controller
         if(!empty($request->get('keyword'))){
             $SubCategories = $SubCategories->where(
                 'sub_categories.name', 'like', '%' .$request->get('keyword').'%' );
-                $SubCategories = $SubCategories->where(
+                $SubCategories = $SubCategories->orwhere(
                     'sub_categories.name', 'like', '%' .$request->get('keyword').'%' );
         }
 
