@@ -12,7 +12,7 @@ class SubCategoryController extends Controller
     public function index(Request $request)
     {
         $SubCategories = SubCategory::select('sub_categories.*', 'categories.name as categoryName')
-        ->latest('id')->leftJoin('categories', 'categories.id',
+        ->latest('sub_categories.id')->leftJoin('categories', 'categories.id',
         'sub_categories.category_id');
 
         if(!empty($request->get('keyword'))){
@@ -27,7 +27,7 @@ class SubCategoryController extends Controller
 
     public function create ()
     {
-        
+
         $categories = Category::orderBy('name', 'ASC')->get();
         return view('admin.sub-category.create', compact('categories'));
     }
