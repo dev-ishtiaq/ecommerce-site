@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div class="pb-5 pt-3">
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Update</button>
                 <a href="{{route('sub-categories.index')}}" class="btn btn-outline-dark ml-3">Cancel</a>
             </div>
         </form>
