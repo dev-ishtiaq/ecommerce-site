@@ -66,7 +66,7 @@ class SubCategoryController extends Controller
     }
     public function edit ()
     {
-
+        return view('admin.sub-category.edit', compact('categories'));
     }
     public function update ()
     {
