@@ -64,7 +64,7 @@ class SubCategoryController extends Controller
             ]);
         }
     }
-    public function edit ()
+    public function edit (Request $request, $id)
     {
         $categories = Category;
         return view('admin.sub-category.edit', compact('categories'));
