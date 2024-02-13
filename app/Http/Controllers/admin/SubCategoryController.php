@@ -66,13 +66,26 @@ class SubCategoryController extends Controller
     }
     public function edit (Request $request, $id)
     {
+        $subCategory = SubCategory::find($id);
+        if(empty($subCategory))
+        {
+            $request->session()->flash('error', 'record not found');
+            return response([
+                'status' => false,
+                'notFound' => true,
+
+            ]);
+        }
+
         $categories = Category::orderBy('name', 'ASC')->get();
-        $data  ['categories'] = $categories;
+        $data ['categories'] = $categories;
+        $data['subCategory'] = $subCategory;
         return view('admin.sub-category.edit', $data);
     }
+
+
     public function update (Request $request, $id)
     {
-        echo "<h1>.$id.</h1>";
         $subCategory = SubCategory::find($id);
         if(empty($subCategory))
         {
