@@ -66,7 +66,7 @@ class SubCategoryController extends Controller
     }
     public function edit (Request $request, $id)
     {
-        $categories = Category;
+        $categories = Category::orderBy('name', 'ASC')->get();
         return view('admin.sub-category.edit', compact('categories'));
     }
     public function update (Request $request, $id)
