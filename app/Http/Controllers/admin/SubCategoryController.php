@@ -72,6 +72,7 @@ class SubCategoryController extends Controller
     }
     public function update (Request $request, $id)
     {
+        echo "<h1>.$id.</h1>";
         $subCategory = SubCategory::find($id);
         if(empty($subCategory))
         {
