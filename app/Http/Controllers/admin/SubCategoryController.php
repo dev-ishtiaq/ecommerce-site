@@ -69,9 +69,18 @@ class SubCategoryController extends Controller
         $categories = Category;
         return view('admin.sub-category.edit', compact('categories'));
     }
-    public function update ()
+    public function update (Request $request, $id)
     {
+        $subCategory = SubCategory::find($id);
+        if(empty($subCategory))
+        {
+            $request->session()->flash('error', 'record not found');
+            return response([
+                'status' => false,
+                'notFound' => true,
 
+            ]);
+        }
     }
     public function destroy ()
     {
