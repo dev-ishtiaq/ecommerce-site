@@ -49,7 +49,7 @@
                             <div class="mb-3">
                                 <label for="slug">Slug</label>
                                 <input type="text" readonly name="slug" id="slug" class="form-control"
-                                    placeholder="Slug" value="{{$subCategory->slug}}>
+                                    placeholder="Slug" value="{{$subCategory->slug}}">
                                 <p></p>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
         var element = $(this);
         $('button[type=submit]').prop('disabled', true);
         $.ajax({
-            url: '{{route("sub-categories.store")}}',
+            url: '{{route("sub-categories.update", $subCategory->id)}}',
             type: 'post',
             data: element.serializeArray(),
             dataType: 'json',
