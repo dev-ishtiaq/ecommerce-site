@@ -31,7 +31,7 @@
                                     <option value="">Select a Category</option>
                                     @if($categories->isNotEmpty())
                                     @foreach($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    <option {{$subCategory->category_id == $category->id}} value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
                                     @endif
                                 </select>
