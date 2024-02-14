@@ -41,7 +41,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Name" value="{{$subCategory->name}}">
                                 <p></p>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             <div class="mb-3">
                                 <label for="slug">Slug</label>
                                 <input type="text" readonly name="slug" id="slug" class="form-control"
-                                    placeholder="Slug">
+                                    placeholder="Slug" value="{{$subCategory->slug}}>
                                 <p></p>
                             </div>
                         </div>
@@ -57,8 +57,8 @@
                             <div class="mb-3">
                                 <label for="status">Status</label>
                                 <select class="form-control" name="status" id="status">
-                                    <option value="1">Active</option>
-                                    <option value="0">Deactive</option>
+                                    <option {{$subCategory->status == 1 ? 'selected' : ''}} value="1">Active</option>
+                                    <option {{$subCategory->status == 0 ? 'selected' : ''}} value="0">Deactive</option>
                                 </select>
                             </div>
                         </div>
