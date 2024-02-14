@@ -100,26 +100,27 @@ class SubCategoryController extends Controller
 
             ]);
         }
-        
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'slug' => 'required|unique:sub_categories',
+            // 'slug' => 'required|unique:sub_categories',
+            'slug' => 'required|unique:sub_categories,slug,'.$subCategory->id.',id',
             'category' => 'required',
             'status' => 'required'
         ]);
         if ($validator->passes()) {
-            $subCategory = new SubCategory();
+
             $subCategory->name = $request->name;
             $subCategory->slug = $request->slug;
             $subCategory->status = $request->status;
             $subCategory->category_id = $request->category;
             $subCategory->save();
 
-            $request->session()->flash('success', 'Sub category created successfully!');
+            $request->session()->flash('success', 'Sub category updated successfully!');
 
             return response([
                 'status' => true,
-                'message' => 'Sub category created successfully!',
+                'message' => 'Sub category updated successfully!',
             ]);
 
         } else {
