@@ -143,6 +143,14 @@ class SubCategoryController extends Controller
 
             ]);
         }
+        $subCategory->delete();
+
+        $request->session()->flash('success', 'Sub category deleted successfully!');
+
+            return response([
+                'status' => true,
+                'message' => 'Sub category deleted successfully!',
+            ]);
     }
 
 }
