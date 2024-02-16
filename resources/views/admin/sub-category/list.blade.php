@@ -127,9 +127,9 @@
 @section('customjs')
 <script>
     function deleteSubCategory(id) {
-        var url = '{{route("categories.destroy","ID")}}';
+        var url = '{{route("sub-categories.destroy","ID")}}';
         var newUrl = url.replace("ID", id);
-        if (confirm('Are you sure to delete this category!')) {
+        if (confirm('Are you sure to delete this sub category?')) {
             $.ajax({
                 url: newUrl,
                 type: 'delete',
@@ -140,7 +140,7 @@
                 },
                 success: function(response) {
                         if (response["status"]) {
-                        window.location.href = "{{route('categories.index')}}";
+                        window.location.href = "{{route('sub-categories.index')}}";
                     }
 
                 }
