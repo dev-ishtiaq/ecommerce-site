@@ -84,7 +84,7 @@
                                         </path>
                                     </svg>
                                 </a>
-                                <a href="{{route('sub-categories.destroy', $subcategory->id)}}" onclick="deleteCategory({{$subcategory->id}})"
+                                <a href="{{route('sub-categories.destroy', $subcategory->id)}}" onclick="deleteSubCategory({{$subcategory->id}})"
                                     class="text-danger w-4 h-4 mr-1">
                                     <svg wire:loading.remove.delay="" wire:target=""
                                         class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +126,7 @@
 
 @section('customjs')
 <script>
-    function deleteCategory(id) {
+    function deleteSubCategory(id) {
         var url = '{{route("categories.destroy","ID")}}';
         var newUrl = url.replace("ID", id);
         if (confirm('Are you sure to delete this category!')) {
