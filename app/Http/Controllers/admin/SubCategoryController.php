@@ -131,9 +131,18 @@ class SubCategoryController extends Controller
         }
     }
     // ===================== DESTROY ====================
-    public function destroy ()
+    public function destroy (Request $request, $id)
     {
+        $subCategory = SubCategory::find($id);
+        if(empty($subCategory))
+        {
+            $request->session()->flash('error', 'record not found');
+            return response([
+                'status' => false,
+                'notFound' => true,
 
+            ]);
+        }
     }
 
 }
