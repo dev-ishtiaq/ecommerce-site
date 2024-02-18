@@ -98,8 +98,9 @@
                         .removeClass('invalid-feedback').html("");
                 }
                 else {
-                    if(response['notFound'] == false){
+                    if(response['notFound'] == true){
                         window.location.href = "{{route('sub-categories.index')}}";
+                        return false;
                     }
 
                     var errors = response['errors'];
