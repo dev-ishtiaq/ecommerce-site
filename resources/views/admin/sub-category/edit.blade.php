@@ -96,7 +96,12 @@
                     $("#slug").removeClass('is-invalid')
                         .siblings('p')
                         .removeClass('invalid-feedback').html("");
-                } else {
+                }
+                else {
+                    if(response['notFound'] == false){
+                        window.location.href = "{{route('sub-categories.index')}}";
+                    }
+
                     var errors = response['errors'];
                     if (errors['name']) {
                         $("#name").addClass('is-invalid')
