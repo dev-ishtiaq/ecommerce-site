@@ -26,6 +26,8 @@ class BrandController extends Controller
         if($validator->passes())
         {
             $brand = new Brand();
+            $brand->name = $request->name;
+            $brand->name = $request->name;
         } else {
             return response()->json([
                 'status' => false,
