@@ -15,8 +15,11 @@ class BrandController extends Controller
     public function index () {
 
     }
-    public function store ()
+    public function store (Request $request)
     {
-
+        $validator = Validator::make($request->all(),[
+            'name' => 'required',
+            'slug' => 'required|unique:brands',
+        ]);
     }
 }
