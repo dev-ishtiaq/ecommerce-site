@@ -21,5 +21,14 @@ class BrandController extends Controller
             'name' => 'required',
             'slug' => 'required|unique:brands',
         ]);
+        if($validator->passes())
+        {
+
+        } else {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
     }
 }
