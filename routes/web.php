@@ -56,7 +56,8 @@ Route::group(['prefix' => 'admin'], function()
 
         // brand routes
         Route::get('/brand/create',[BrandController:: class, 'create'])->name('brand.create');
-        Route::get('/brand/create',[BrandController:: class, 'create'])->name('brand.index');
+        Route::get('/brands',[BrandController:: class, 'index'])->name('brand.index');
+        Route::post('/brands',[BrandController:: class, 'store'])->name('brand.store');
 
         // temp image
         Route::post('/upload-temp-image',[TempImagesController:: class, 'create'])->name('temp-images.create');

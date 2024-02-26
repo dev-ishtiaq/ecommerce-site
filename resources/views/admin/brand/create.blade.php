@@ -61,7 +61,7 @@
         var element = $(this);
         $('button[type=submit]').prop('disabled', true);
         $.ajax({
-            url: '{{route("brands.store")}}',
+            url: '{{route("brand.store")}}',
             type: 'post',
             data: element.serializeArray(),
             dataType: 'json',
