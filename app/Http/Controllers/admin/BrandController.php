@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\BrandCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -21,9 +22,10 @@ class BrandController extends Controller
             'name' => 'required',
             'slug' => 'required|unique:brands',
         ]);
+
         if($validator->passes())
         {
-
+            $brand = new Brand();
         } else {
             return response()->json([
                 'status' => false,
