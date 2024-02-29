@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Models\BrandCategory;
+use App\Models\Brand;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -28,6 +28,12 @@ class BrandController extends Controller
             $brand = new Brand();
             $brand->name = $request->name;
             $brand->slug = $request->slug;
+            $brand->save();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'brand added successfully!',
+            ]);
         } else {
             return response()->json([
                 'status' => false,
