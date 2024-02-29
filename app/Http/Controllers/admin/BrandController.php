@@ -27,7 +27,7 @@ class BrandController extends Controller
         {
             $brand = new Brand();
             $brand->name = $request->name;
-            $brand->name = $request->name;
+            $brand->slug = $request->slug;
         } else {
             return response()->json([
                 'status' => false,
