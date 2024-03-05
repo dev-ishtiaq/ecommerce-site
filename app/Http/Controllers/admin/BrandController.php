@@ -14,7 +14,8 @@ class BrandController extends Controller
         return view('admin.brand.create');
     }
     public function index () {
-
+        $brands = Brand::latest('id');
+        $brands->get();
     }
     public function store (Request $request)
     {
@@ -28,6 +29,7 @@ class BrandController extends Controller
             $brand = new Brand();
             $brand->name = $request->name;
             $brand->slug = $request->slug;
+            $brand->status = $request->status;
             $brand->save();
 
             return response()->json([
