@@ -15,7 +15,7 @@ class BrandController extends Controller
     }
     public function index () {
         $brands = Brand::latest('id');
-        $brands->get();
+        $brands = $brand->get();
     }
     public function store (Request $request)
     {
