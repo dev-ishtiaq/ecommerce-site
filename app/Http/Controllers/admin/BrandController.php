@@ -15,7 +15,9 @@ class BrandController extends Controller
     }
     public function index () {
         $brands = Brand::latest('id');
-        $brands = $brand->get();
+        $brands = $brands->get();
+
+        return view('admin.brand.list', compact('brands'));
     }
     public function store (Request $request)
     {
