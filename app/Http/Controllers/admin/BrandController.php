@@ -16,6 +16,11 @@ class BrandController extends Controller
     }
     public function index (Request $request) {
         $brands = Brand::latest('id');
+
+        if(!empty($request->get('keyword'))){
+            $brands = $brands->where('name', 'like', '%' .$request->get('keyword').'%' );
+        }
+
         $brands = $brands->paginate(10);
 
         return view('admin.brand.list', compact('brands'));

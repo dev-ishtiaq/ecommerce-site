@@ -78,13 +78,13 @@
             success: function(response) {
                 $('button[type=submit]').prop('disabled', false);
                 if (response["status"] == true) {
-                    // window.location.href = "{{route('brand.create')}}";
-                    // $("#name").removeClass('is-invalid')
-                    //     .siblings('p')
-                    //     .removeClass('invalid-feedback').html("");
-                    // $("#slug").removeClass('is-invalid')
-                    //     .siblings('p')
-                    //     .removeClass('invalid-feedback').html("");
+                    window.location.href = "{{route('brand.index')}}";
+                    $("#name").removeClass('is-invalid')
+                        .siblings('p')
+                        .removeClass('invalid-feedback').html("");
+                    $("#slug").removeClass('is-invalid')
+                        .siblings('p')
+                        .removeClass('invalid-feedback').html("");
                 } else {
                     var errors = response['errors'];
                     if (errors['name']) {
