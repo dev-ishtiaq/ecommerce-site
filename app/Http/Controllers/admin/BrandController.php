@@ -47,6 +47,12 @@ class BrandController extends Controller
         }
     }
     public function edit (Request $request) {
-        
+
+    }
+    public function update (Request $request) {
+
+    }
+    public function destroy (Request $request) {
+
     }
 }

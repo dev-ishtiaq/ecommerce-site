@@ -58,8 +58,9 @@ Route::group(['prefix' => 'admin'], function()
         Route::get('/brand/create',[BrandController:: class, 'create'])->name('brand.create');
         Route::get('/brands',[BrandController:: class, 'index'])->name('brand.index');
         Route::post('/brands',[BrandController:: class, 'store'])->name('brand.store');
-        Route::post('/brands',[BrandController:: class, 'edit'])->name('brands.edit');
-        Route::post('/brands',[BrandController:: class, 'destroy'])->name('brands.destroy');
+        Route::post('/brands/{brand}/edit',[BrandController:: class, 'edit'])->name('brands.edit');
+        Route::post('/brands/{brand}',[BrandController:: class, 'update'])->name('brands.update');
+        Route::post('/brands/{brand}',[BrandController:: class, 'destroy'])->name('brand.destroy');
 
         // temp image
         Route::post('/upload-temp-image',[TempImagesController:: class, 'create'])->name('temp-images.create');
