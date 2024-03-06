@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 
 class BrandController extends Controller
 {
@@ -13,7 +14,7 @@ class BrandController extends Controller
     {
         return view('admin.brand.create');
     }
-    public function index () {
+    public function index (Request $request) {
         $brands = Brand::latest('id');
         $brands = $brands->get();
 
@@ -44,5 +45,8 @@ class BrandController extends Controller
                 'errors' => $validator->errors()
             ]);
         }
+    }
+    public function edit (Request $request) {
+        
     }
 }

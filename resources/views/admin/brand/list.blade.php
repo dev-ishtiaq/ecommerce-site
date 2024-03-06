@@ -5,10 +5,10 @@
         @include('admin.message')
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Categories</h1>
+                <h1>Brands</h1>
             </div>
             <div class="col-sm-6 text-right">
-                <a href="{{route('categories.create')}}" class="btn btn-primary">New Category</a>
+                <a href="{{route('brand.create')}}" class="btn btn-primary">New Brand</a>
             </div>
         </div>
     </div>
@@ -51,14 +51,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if($categories->isNotEmpty())
-                        @foreach ($categories as $category)
+                        @if($brands->isNotEmpty())
+                        @foreach ($brands as $brand)
                         <tr>
                             <td>{{$loop->index+1}}</td>
-                            <td>{{$category->name}}</td>
-                            <td>{{$category->slug}}</td>
+                            <td>{{$brand->name}}</td>
+                            <td>{{$brand->slug}}</td>
                             <td>
-                                @if ($category->status == 1)
+                                @if ($brand->status == 1)
                                 <svg class="text-success-500 h-6 w-6 text-success" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                     aria-hidden="true">
@@ -74,7 +74,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{route('categories.edit', $category->id)}}">
+                                <a href="{{route('brands.edit', $brand->id)}}">
                                     <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path
@@ -82,7 +82,7 @@
                                         </path>
                                     </svg>
                                 </a>
-                                <a href="{{route('categories.destroy', $category->id)}}" onclick="deleteCategory({{$category->id}})"
+                                <a href="{{route('brand.destroy', $brand->id)}}" onclick="deletebrand({{$brand->id}})"
                                     class="text-danger w-4 h-4 mr-1">
                                     <svg wire:loading.remove.delay="" wire:target=""
                                         class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
@@ -105,8 +105,8 @@
                 </table>
             </div>
             <div class="card-footer clearfix">
-                {{$categories->links()}}
-                {{-- <ul class="pagination pagination m-0 float-right">
+                {{$brands->links()}}
+             {{-- <ul class="pagination pagination m-0 float-right">
                   <li class="page-item"><a class="page-link" href="#">«</a></li>
                   <li class="page-item"><a class="page-link" href="#">1</a></li>
                   <li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -124,10 +124,10 @@
 
 @section('customjs')
 <script>
-    function deleteCategory(id) {
+    function deletebrand(id) {
         var url = '{{route("categories.destroy","ID")}}';
         var newUrl = url.replace("ID", id);
-        if (confirm('Are you sure to delete this category!')) {
+        if (confirm('Are you sure to delete this brand!')) {
             $.ajax({
                 url: newUrl,
                 type: 'delete',
