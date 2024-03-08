@@ -53,7 +53,8 @@ class BrandController extends Controller
     }
     public function edit (Request $request) {
         $brand = Brand::find($id);
-        
+        $request->session()->flash('error', 'Record not found');
+        return redirect()->route('brands.index');
     }
     public function update (Request $request) {
 
