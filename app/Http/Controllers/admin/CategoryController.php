@@ -111,7 +111,7 @@ class CategoryController extends Controller
                 return response()->json([
                     'status' => false,
                     'notfound' => true,
-                    'message' => 'Category not found'
+                    'message' => 'Category not found',
                 ]);
             }
             $validator = Validator::make($request->all(),[

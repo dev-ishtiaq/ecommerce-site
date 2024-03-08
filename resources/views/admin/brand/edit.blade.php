@@ -10,7 +10,7 @@
                 <h1>Edit Brand</h1>
             </div>
             <div class="col-sm-6 text-right">
-                <a href="{{route('categories.index')}}" class="btn btn-primary">Back</a>
+                <a href="{{route('brand.index')}}" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
 <section class="content">
     <!-- Default box -->
     <div class="container-fluid">
-        <form action="" method="post" id="brandForm" name="brandForm">
+        <form action="" method="post" id="editbrandForm" name="editbrandForm">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -65,7 +65,7 @@
 
 @section('customjs')
 <script>
-    $("#brandForm").submit(function(event) {
+    $("#editbrandForm").submit(function(event) {
         event.preventDefault();
         var element = $(this);
         $('button[type=submit]').prop('disabled', true);
@@ -86,7 +86,7 @@
                         .removeClass('invalid-feedback').html("");
                 } else {
                     if (response["notfound"] == true) {
-                        window.location.href = "{{route('categories.index')}}";
+                        window.location.href = "{{route('brand.index')}}";
                     }
                     var errors = response['errors'];
                     if (errors['name']) {
@@ -114,6 +114,9 @@
             }
         })
     })
+
+
+
     $("#name").change(function() {
         element = $(this);
         $('button[type=submit]').prop('disabled', true);
@@ -132,27 +135,6 @@
             }
         });
     });
-    Dropzone.autoDiscover = false;
-    const dropzone = $("#image").dropzone({
-        init: function() {
-            this.on('addedfile', function(file) {
-                if (this.files.length > 1) {
-                    this.removeFile(this.files[0]);
-                }
-            });
-        },
-        url: "{{ route('temp-images.create') }}",
-        maxFiles: 1,
-        paramName: 'image',
-        addRemoveLinks: true,
-        acceptedFiles: "image/jpeg,image/png,image/gif",
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function(file, response) {
-            $("#image_id").val(response.image_id);
-            //console.log(response)
-        }
-    });
+
 </script>
 @endsection
