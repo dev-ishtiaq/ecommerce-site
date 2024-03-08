@@ -51,10 +51,17 @@ class BrandController extends Controller
             ]);
         }
     }
-    public function edit (Request $request) {
+    public function edit (Request $request, $id) {
         $brand = Brand::find($id);
-        $request->session()->flash('error', 'Record not found');
-        return redirect()->route('brands.index');
+        if(empty($brand))
+        {
+            $request->session()->flash('error', 'Record not found');
+            return redirect()->route('brand.index');
+        }
+
+
+        $data['brand'] = $brand;
+        return view('admin.brand.edit', $data);
     }
     public function update (Request $request) {
 
