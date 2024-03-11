@@ -103,5 +103,15 @@ class BrandController extends Controller
     }
     public function destroy (Request $request, $id) {
         $brand = Brand::find($id);
+
+        if(empty($category))
+        {
+         $request->session()->flash('error', 'Category Not found');
+        return response()->json([
+            'status' => true,
+            'message' => 'Category Not found'
+        ]);
+
+        }
     }
 }
