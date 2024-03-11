@@ -125,7 +125,7 @@
 @section('customjs')
 <script>
     function deletebrand(id) {
-        var url = '{{route("categories.destroy","ID")}}';
+        var url = '{{route("brand.destroy","ID")}}';
         var newUrl = url.replace("ID", id);
         if (confirm('Are you sure to delete this brand!')) {
             $.ajax({
@@ -138,7 +138,7 @@
                 },
                 success: function(response) {
                         if (response["status"]) {
-                        window.location.href = "{{route('categories.index')}}";
+                        window.location.href = "{{route('brand.index')}}";
                     }
 
                 }
