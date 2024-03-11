@@ -101,7 +101,7 @@ class BrandController extends Controller
             ]);
         }
     }
-    public function destroy (Request $request) {
+    public function destroy (Request $request, $id) {
 
     }
 }
