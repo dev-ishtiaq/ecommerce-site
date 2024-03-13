@@ -14,6 +14,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('admin/css/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/dropzone/min/dropzone.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/summernote/summernote.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/css/custom.css')}}">
 </head>
 
@@ -175,6 +176,7 @@
     <script src="{{asset('admin/js/adminlte.min.js')}}"></script>
     {{-- dropzone --}}
     <script src="{{asset('admin/plugins/dropzone/min/dropzone.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/summernote/summernote.min.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('admin/js/demo.js')}}"></script>
     <script type="text/javascript">
@@ -183,6 +185,11 @@
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			}
 		});
+        $(document).ready(function(){
+            $(".summernote").summernote({
+                height: 250
+            });
+        });
     </script>
     @yield('customjs')
 </body>
