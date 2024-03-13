@@ -64,7 +64,7 @@ Route::group(['prefix' => 'admin'], function()
         Route::delete('/brands/{brand}',[BrandController:: class, 'destroy'])->name('brand.destroy');
 
         // Product Routes
-        Route::
+        Route::get('/product/create',[ProductController:: class, 'create'])->name('product.create');
 
         // temp image
         Route::post('/upload-temp-image',[TempImagesController:: class, 'create'])->name('temp-images.create');
