@@ -32,7 +32,7 @@
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="title">Slug</label>
-                                    <input type="text" name="slug" id="slug" class="form-control" placeholder="Slug">
+                                    <input type="text" readonly name="slug" id="slug" class="form-control" placeholder="Slug will add here automatically!">
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -236,7 +236,7 @@
     })
 
     // get slug
-    $("#name").change(function() {
+    $("#title").change(function() {
         element = $(this);
         $('button[type=submit]').prop('disabled', true);
         $.ajax({
