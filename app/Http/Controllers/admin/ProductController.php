@@ -22,7 +22,6 @@ class ProductController extends Controller
         $data['categories'] = $categories;
         $data['brands'] = $brands;
 
-
         return view('admin.product.create', $data);
     }
 
