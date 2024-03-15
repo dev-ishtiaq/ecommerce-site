@@ -9,12 +9,15 @@ class ProductSubCategoryController extends Controller
 {
     public function index (Request $request)
     {
-        SubCategry::where('category_id', $request->category_id)
-        ->orderBy('name', 'ASC')->get();
+        if(!empty($request->category_id)){
+            SubCategry::where('category_id', $request->category_id)
+            ->orderBy('name', 'ASC')->get();
+    
+            return response()->json([
+                'status' => true,
+                'subCategories' => $subCategories
+            ]);
+        }
 
-        return response()->json([
-            'status' => true,
-            'subCategories' => $subCategories
-        ]);
     }
 }
