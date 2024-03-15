@@ -139,11 +139,11 @@
                                 <label for="category">Sub category</label>
                                 <select name="sub_category" id="sub_category" class="form-control">
                                     <option value="">Select a Sub Category</option>
-                                    @if($subCategories->isNotEmpty())
+                                    {{-- @if($subCategories->isNotEmpty())
                                         @foreach($subCategories as $subCategory)
                                         <option value="{{$subCategory->id}}">{{$subCategory->name}}</option>
                                         @endforeach
-                                    @endif
+                                    @endif --}}
                                 </select>
                             </div>
                         </div>
@@ -205,7 +205,30 @@
             },
 
         })
-    })
+    });
+
+    $("#category").change(function() {
+        var category_id = $(this).val();
+        $.ajax({
+            url: '{{route("product-subcategories.index")}}',
+            type: 'get',
+            data: {category_id:category_id},
+            dataType: 'json',
+            success: function(response){
+                // console.log(response);
+                $("sub_category").find("option").not(":first").remove();
+                $.each(response["subCategories"],function(key,item)
+                {
+                    $("#sub_category").append(`<option ='${item.id}'>${item.name}</option>`)
+                });
+            },
+            error: function(){
+                console.log("something went wrong");
+
+
+            },
+        });
+    });
 
 
     $("#productForm").submit(function(event) {
@@ -262,7 +285,7 @@
                 console.log("something went wrong");
             }
         })
-    })
+    });
 
     // get slug
     $("#title").change(function() {
@@ -283,20 +306,8 @@
             }
         });
     });
-    $("#category").change(function() {
-        $.ajax({
-            url: '',
-            type: 'post',
-            data: {},
-            dataType: 'json',
-            success: function(response){
 
-            },
-            error: function(){
-                console.log("something went wrong");
-            },
-        });
-    });
+
 
 </script>
 @endsection

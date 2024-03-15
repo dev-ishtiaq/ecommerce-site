@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SubCategoryController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\ProductSubCategoryController;
 use App\Http\Controllers\admin\TempImagesController;
 use Illuminate\Http\Request;
 
@@ -65,6 +66,8 @@ Route::group(['prefix' => 'admin'], function()
 
         // Product Routes
         Route::get('/product/create',[ProductController:: class, 'create'])->name('product.create');
+
+        Route::get('/product-subcategories',[ProductSubCategoryController:: class, 'index'])->name('product-subcategories.index');
 
         // temp image
         Route::post('/upload-temp-image',[TempImagesController:: class, 'create'])->name('temp-images.create');
