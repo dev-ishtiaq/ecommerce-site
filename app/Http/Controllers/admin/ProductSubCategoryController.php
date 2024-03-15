@@ -18,6 +18,11 @@ class ProductSubCategoryController extends Controller
                 'status' => true,
                 'subCategories' => $subCategories
             ]);
+        } else {
+            return response()->json([
+                'status' => true,
+                'subCategories' => []
+            ]);
         }
 
     }

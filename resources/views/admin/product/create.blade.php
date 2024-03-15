@@ -283,6 +283,20 @@
             }
         });
     });
+    $("#category").change(function() {
+        $.ajax({
+            url: '',
+            type: 'post',
+            data: {},
+            dataType: 'json',
+            success: function(response){
+
+            },
+            error: function(){
+                console.log("something went wrong");
+            },
+        });
+    });
 
 </script>
 @endsection
