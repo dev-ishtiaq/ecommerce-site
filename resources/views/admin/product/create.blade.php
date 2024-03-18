@@ -178,7 +178,7 @@
             </div>
 
             <div class="pb-5 pt-3">
-                <button class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Create</button>
                 <a href="products.html" class="btn btn-outline-dark ml-3">Cancel</a>
             </div>
         </div>
@@ -233,17 +233,19 @@
 
     $("#productForm").submit(function(event) {
         event.preventDefault();
-        var element = $(this);
+
+        var formArray = $(this).serializeArray();
+
         $('button[type=submit]').prop('disabled', true);
         $.ajax({
-            url: '{{route("sub-categories.store")}}',
+            url: '{{route("product.store")}}',
             type: 'post',
             data: element.serializeArray(),
             dataType: 'json',
             success: function(response) {
                 $('button[type=submit]').prop('disabled', false);
                 if (response["status"] == true) {
-                    window.location.href = "{{route('sub-categories.create')}}";
+                    window.location.href = "{{route('product.create')}}";
                     $("#name").removeClass('is-invalid')
                         .siblings('p')
                         .removeClass('invalid-feedback').html("");
