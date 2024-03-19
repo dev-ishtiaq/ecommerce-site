@@ -155,7 +155,7 @@
                         <div class="card-body">
                             <h2 class="h4 mb-3">Product brand</h2>
                             <div class="mb-3">
-                                <select name="status" id="status" class="form-control">
+                                <select name="brand" id="brand" class="form-control">
                                     <option value="">Select a Sub Brand</option>
                                     @if($brands->isNotEmpty())
                                         @foreach($brands as $brand)
@@ -217,16 +217,20 @@
         });
     });
 
+
+//  ----------------------
     $("#productForm").submit(function(event){
         event.preventDefault();
 
         var formArray = $(this).serializeArray();
+        $("button[type='submit']").prop('disabled',true);
         $.ajax({
             url: '{{route("product.store")}}',
             type: 'post',
             data: formArray,
             dataType: 'json',
             success: function(response){
+                $("button[type='submit']").prop('disabled',false);
                 if(response['status'] == true){
 
                 } else {
@@ -244,6 +248,8 @@
                     }
 
                     $(".error").removeClass('invalid-feedback').html('');
+                    $("input[type='text'].select, input[type='number']").removeClass('is-invalid');
+
                     $.each(errors, function(key,value){
                         $(`#${key}`).addClass('is-invalid')
                         .siblings('p')
@@ -273,7 +279,7 @@
                 $("sub_category").find("option").not(":first").remove();
                 $.each(response["subCategories"],function(key,item)
                 {
-                    $("#sub_category").append(`<option ='${item.id}'>${item.name}</option>`)
+                    $("#sub_category").append(`<option value ='${item.id}'>${item.name}</option>`)
                 });
             },
             error: function(){
@@ -284,64 +290,30 @@
         });
     });
 
+    Dropzone.autoDiscover = false;
+    const dropzone = $("#image").dropzone({
+        init: function() {
+            this.on('addedfile', function(file) {
+                if (this.files.length > 1) {
+                    this.removeFile(this.files[0]);
+                }
+            });
+        },
+        url: "{{ route('temp-images.create') }}",
+        maxFiles: 10,
+        paramName: 'image',
+        addRemoveLinks: true,
+        acceptedFiles: "image/jpeg,image/png,image/gif",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(file, response) {
+            $("#image_id").val(response.image_id);
+            //console.log(response)
+        }
+    });
 
-    // $("#productForm").submit(function(event) {
-    //     event.preventDefault();
 
-    //     var formArray = $(this).serializeArray();
-
-    //     $('button[type=submit]').prop('disabled', true);
-    //     $.ajax({
-    //         url: '{{route("product.store")}}',
-    //         type: 'post',
-    //         data: element.serializeArray(),
-    //         dataType: 'json',
-    //         success: function(response) {
-    //             $('button[type=submit]').prop('disabled', false);
-    //             if (response["status"] == true) {
-    //                 window.location.href = "{{route('product.create')}}";
-    //                 $("#name").removeClass('is-invalid')
-    //                     .siblings('p')
-    //                     .removeClass('invalid-feedback').html("");
-    //                 $("#slug").removeClass('is-invalid')
-    //                     .siblings('p')
-    //                     .removeClass('invalid-feedback').html("");
-    //             } else {
-    //                 var errors = response['errors'];
-    //                 if (errors['name']) {
-    //                     $("#name").addClass('is-invalid')
-    //                         .siblings('p')
-    //                         .addClass('invalid-feedback').html(errors['name']);
-    //                 } else {
-    //                     $("#name").removeClass('is-invalid')
-    //                         .siblings('p')
-    //                         .removeClass('invalid-feedback').html("");
-    //                 }
-    //                 if (errors['slug']) {
-    //                     $("#slug").addClass('is-invalid')
-    //                         .siblings('p')
-    //                         .addClass('invalid-feedback').html(errors['slug']);
-    //                 } else {
-    //                     $("#slug").removeClass('is-invalid')
-    //                         .siblings('p')
-    //                         .removeClass('invalid-feedback').html("");
-    //                 }
-    //                 if (errors['category']) {
-    //                     $("#category").addClass('is-invalid')
-    //                         .siblings('p')
-    //                         .addClass('invalid-feedback').html(errors['category']);
-    //                 } else {
-    //                     $("#category").removeClass('is-invalid')
-    //                         .siblings('p')
-    //                         .removeClass('invalid-feedback').html("");
-    //                 }
-    //             }
-    //         },
-    //         error: function(jqXHR, exception) {
-    //             console.log("something went wrong");
-    //         }
-    //     })
-    // });
 
 
 
