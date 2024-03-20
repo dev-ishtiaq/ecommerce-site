@@ -29,6 +29,7 @@ class TempImagesController extends Controller
         $destPath = public_path().'/tempImage/thumb/'.$newName;
         $image = $manager::make($sourcePath);
         $image->fit(300, 280);
+        
         $image->save($destPath);
 
         return response()->json([
