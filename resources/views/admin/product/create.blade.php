@@ -308,7 +308,7 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(file, response) {
-            $("#image_id").val(response.image_id);
+            // $("#image_id").val(response.image_id);
             //console.log(response)
         }
     });
