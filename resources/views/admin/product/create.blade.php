@@ -307,7 +307,7 @@
             // $("#image_id").val(response.image_id);
             //console.log(response)
             var html = `<div class="card">
-                        <input type="hidden" name="image_array" value="${response.image_id}">
+                        <input type="hidden" name="image_array[]" value="${response.image_id}">
                             <img src="${response.ImagePath}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <a href="#" class="btn btn-danger">Delete</a>

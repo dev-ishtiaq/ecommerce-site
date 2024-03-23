@@ -29,6 +29,8 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        dd();
+        exit();
         $rules = [
             'title' => 'required',
             'slug' => 'required|unique:products',
