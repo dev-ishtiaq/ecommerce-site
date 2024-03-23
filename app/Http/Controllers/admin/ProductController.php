@@ -29,7 +29,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        dd();
+        dd($request->image);
         exit();
         $rules = [
             'title' => 'required',
@@ -65,6 +65,10 @@ class ProductController extends Controller
             $product->brand_id = $request->brand;
             $product->is_featured = $request->is_featured;
             $product->save();
+
+
+            // save gallery image
+            if($request)
 
             $request->session()->flash('success', 'Product added successfully');
 
