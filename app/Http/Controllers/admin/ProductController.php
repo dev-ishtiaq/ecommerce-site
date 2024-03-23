@@ -68,7 +68,9 @@ class ProductController extends Controller
 
 
             // save gallery image
-            if($request)
+            if(!empty($request->image_array)) {
+                foreach ($request->image_array as $temp_image_array)
+            }
 
             $request->session()->flash('success', 'Product added successfully');
 
