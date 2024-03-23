@@ -71,22 +71,33 @@ class ProductController extends Controller
             // save gallery image
             if(!empty($request->image_array)) {
                 foreach ($request->image_array as $temp_image_id) {
-                    $productImage = new ProductImage();
-            }
+                    $tempImageInfo = TempImage::find($temp_image_id);
+                    $extArray = explode('.',$tempImageInfo->name);
 
+
+                    $productImage = new ProductImage();
+                    $productImage->product_id = $product->id;
+                    $productImage->product_id = $product->id;
+                    $productImage->image = 'NULL';
+                    $productImage->save();
+                    $productImage = $product->id.'-'.$productImage->id;
+                }
+            }
             $request->session()->flash('success', 'Product added successfully');
 
             return response()->json([
                 'status' => true,
                 'message' => 'Product added successfully!',
             ]);
-        } else {
-            return response()->json([
-                'status' => false,
-                'errors' => $validator->errors()
-            ]);
-        }
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'errors' => $validator->errors()
+                ]);
+            }
+
     }
+
 
     public function index()
     {
