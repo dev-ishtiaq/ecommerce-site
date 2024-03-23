@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\brand;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
