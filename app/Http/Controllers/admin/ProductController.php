@@ -81,6 +81,7 @@ class ProductController extends Controller
                     $productImage->image = 'NULL';
                     $productImage->save();
                     $productImage = $product->id.'-'.$productImage->id.'-'.time().'.'.$ext;
+                    $productImage->image = $imageName;
                     // product_id => 4; product_image_id => 1
                     // 4-1-.jpg
                 }
