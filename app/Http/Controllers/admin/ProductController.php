@@ -80,7 +80,9 @@ class ProductController extends Controller
                     $productImage->product_id = $product->id;
                     $productImage->image = 'NULL';
                     $productImage->save();
-                    $productImage = $product->id.'-'.$productImage->id.'-'.$ext;
+                    $productImage = $product->id.'-'.$productImage->id.'-'.time().'.'.$ext;
+                    // product_id => 4; product_image_id => 1
+                    // 4-1-.jpg
                 }
             }
             $request->session()->flash('success', 'Product added successfully');
