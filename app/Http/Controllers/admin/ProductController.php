@@ -73,7 +73,7 @@ class ProductController extends Controller
                 foreach ($request->image_array as $temp_image_id) {
                     $tempImageInfo = TempImage::find($temp_image_id);
                     $extArray = explode('.',$tempImageInfo->name);
-
+                    $ext = last($extArray);
 
                     $productImage = new ProductImage();
                     $productImage->product_id = $product->id;
