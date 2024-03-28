@@ -90,9 +90,12 @@ class ProductController extends Controller
                     // generate product thumbnail
 
                     $manager = new ImageManager(new Driver());
-                    $sourcePath = public_path().'/tempImage/'.$newName;
+                    $sourcePath = public_path().'/tempImage/'.$tempImageInfo->name;
+                    $destPath = public_path().'/uploads/products/large'.$tempImageInfo->name;
                     $img = $manager->read($sourcePath);
-                    
+                    $img->resize(300, null, function($constraint) {
+                    $constraint->aspectRatio();
+                    });
 
                     // product_id => 4; product_image_id => 1
                     // 4-1-.jpg
