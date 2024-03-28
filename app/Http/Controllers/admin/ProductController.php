@@ -10,6 +10,8 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Imagick\Driver;
 
 class ProductController extends Controller
 {
@@ -80,8 +82,14 @@ class ProductController extends Controller
                     $productImage->product_id = $product->id;
                     $productImage->image = 'NULL';
                     $productImage->save();
-                    $productImage = $product->id.'-'.$productImage->id.'-'.time().'.'.$ext;
+
+                    $imageName = $product->id.'-'.$productImage->id.'-'.time().'.'.$ext;
                     $productImage->image = $imageName;
+                    $productImage->save();
+
+                    // generate product thumbnail
+                    $image = Image::
+
                     // product_id => 4; product_image_id => 1
                     // 4-1-.jpg
                 }
