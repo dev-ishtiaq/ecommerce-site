@@ -88,7 +88,11 @@ class ProductController extends Controller
                     $productImage->save();
 
                     // generate product thumbnail
-                    $image = Image::
+
+                    $manager = new ImageManager(new Driver());
+                    $sourcePath = public_path().'/tempImage/'.$newName;
+                    $img = $manager->read($sourcePath);
+                    
 
                     // product_id => 4; product_image_id => 1
                     // 4-1-.jpg
