@@ -88,15 +88,24 @@ class ProductController extends Controller
                     $productImage->save();
 
                     // generate product thumbnail
-
+                    // large image
                     $manager = new ImageManager(new Driver());
+                    $sourcePath = public_path().'/tempImage/'.$tempImageInfo->name;
+                    $destPath = public_path().'/uploads/products/large'.$tempImageInfo->name;
+                    $img = $manager->read($sourcePath);
+                    $img->resize(1400, null, function($constraint) {
+                    $constraint->aspectRatio();
+                    });
+                    $img->save($destPath);
+
+                    // small image
                     $sourcePath = public_path().'/tempImage/'.$tempImageInfo->name;
                     $destPath = public_path().'/uploads/products/large'.$tempImageInfo->name;
                     $img = $manager->read($sourcePath);
                     $img->resize(300, null, function($constraint) {
                     $constraint->aspectRatio();
                     });
-
+                    $img->save($destPath);
                     // product_id => 4; product_image_id => 1
                     // 4-1-.jpg
                 }
