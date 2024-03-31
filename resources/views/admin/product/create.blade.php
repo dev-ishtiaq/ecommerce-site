@@ -235,9 +235,12 @@
             success: function(response){
                 $("button[type='submit']").prop('disabled',false);
                 if(response['status'] == true){
+                    $(".error").removeClass('invalid-feedback').html('');
+                    $("input[type='text'].select, input[type='number']").removeClass('is-invalid');
+
                     window.location.href="{{route('product.index')}}";
                 } else {
-                  
+
 
                     $(".error").removeClass('invalid-feedback').html('');
                     $("input[type='text'].select, input[type='number']").removeClass('is-invalid');
