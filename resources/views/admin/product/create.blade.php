@@ -237,18 +237,7 @@
                 if(response['status'] == true){
                     window.location.href="{{route('product.index')}}";
                 } else {
-                    var errors = response['errors'];
-                    if(errors['title']) {
-                        $("#title").addClass('is-invalid')
-                        .siblings('p')
-                        .addClass('invalid-feedback')
-                        .html(errors['title']);
-                    } else {
-                        $("#title").removeClass('is-invalid')
-                        .siblings('p')
-                        .removeClass('invalid-feedback')
-                        .html("");
-                    }
+                  
 
                     $(".error").removeClass('invalid-feedback').html('');
                     $("input[type='text'].select, input[type='number']").removeClass('is-invalid');
