@@ -235,7 +235,7 @@
             success: function(response){
                 $("button[type='submit']").prop('disabled',false);
                 if(response['status'] == true){
-                    window.location.href
+                    window.location.href="{{route('product.index')}}";
                 } else {
                     var errors = response['errors'];
                     if(errors['title']) {
