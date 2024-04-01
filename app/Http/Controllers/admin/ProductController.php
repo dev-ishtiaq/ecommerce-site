@@ -14,7 +14,10 @@ use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Imagick\Driver;
 
 class ProductController extends Controller
-{
+{   public function index ()
+    {
+        
+    }
     public function create()
     {
         $data = [];
