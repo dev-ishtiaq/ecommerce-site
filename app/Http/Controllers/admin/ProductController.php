@@ -14,9 +14,9 @@ use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Imagick\Driver;
 
 class ProductController extends Controller
-{   public function index ()
+{   public function index()
     {
-        
+
     }
     public function create()
     {
@@ -122,12 +122,6 @@ class ProductController extends Controller
                     'errors' => $validator->errors()
                 ]);
             }
-
-    }
-
-
-    public function index()
-    {
 
     }
 

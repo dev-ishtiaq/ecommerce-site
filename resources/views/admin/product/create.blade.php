@@ -302,7 +302,7 @@
                         <input type="hidden" name="image_array[]" value="${response.image_id}">
                             <img src="${response.ImagePath}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <a href="#" class="btn btn-danger">Delete</a>
+                                <a href="javascript:void(0)" onclick="deleteImage(${response.image_id})" class="btn btn-danger">Delete</a>
                             </div>
                         </div>`;
                         $("product-gallery").append(html);
