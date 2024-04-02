@@ -101,7 +101,7 @@ class ProductController extends Controller
                     });
                     $img->save($destPath);
 
-                    // small image
+                    // small images
                     $destPath = public_path().'/uploads/products/small/'.$tempImageInfo->name;
                     $img = $manager->read($sourcePath);
                     $img->fit(300, 300);
@@ -110,7 +110,7 @@ class ProductController extends Controller
                     // 4-1-.jpg
                 }
             }
-            $request->session()->flash('success', 'Product added successfully');
+            $request->session()->flash('success', 'Product added successfully!');
 
             return response()->json([
                 'status' => true,
