@@ -7,6 +7,7 @@ use App\Models\SubCategory;
 use App\Models\brand;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\TempImage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
@@ -34,8 +35,8 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->image);
-        exit();
+        // dd($request->image);
+        // exit();
         $rules = [
             'title' => 'required',
             'slug' => 'required|unique:products',
@@ -72,6 +73,10 @@ class ProductController extends Controller
             $product->save();
 
 
+
+
+
+
             // save gallery image
             if(!empty($request->image_array)) {
                 foreach ($request->image_array as $temp_image_id) {
@@ -80,7 +85,7 @@ class ProductController extends Controller
                     $ext = last($extArray);
 
                     $productImage = new ProductImage();
-                    $productImage->product_id = $product->id;
+                    // $productImage->product_id = $product->id;
                     $productImage->product_id = $product->id;
                     $productImage->image = 'NULL';
                     $productImage->save();

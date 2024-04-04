@@ -17,7 +17,8 @@
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
-    <form action="" method="post" name="productForm" id="productForm">
+    <form action="" method="post" name="productForm" id="productForm" enctype="multipart/form-data">
+        @csrf
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-8">
@@ -254,9 +255,9 @@
                     })
                 }
             },
-            error: function() {
-                console.log("something went wrong");
-            },
+            error: function (xhr, status, error) {
+                        console.log(error);
+                    }
         })
     });
     $("#category").change(function() {
@@ -276,9 +277,9 @@
                         `<option value ='${item.id}'>${item.name}</option>`)
                 });
             },
-            error: function() {
-                console.log("something went wrong");
-            },
+            error: function (xhr, status, error) {
+                        // Handle errors
+                    }
         });
     });
     Dropzone.autoDiscover = false;
