@@ -31,7 +31,10 @@ class TempImagesController extends Controller
         $destPath = public_path().'/tempImage/thumb/'.$newName;
 
         $img = $manager->read($sourcePath);
-        $img->resize(300, 280);
+        $img->resize(300, null, function($constraint) {
+        $constraint->aspectRatio();
+        });
+        
         $img->save($destPath);
 
         // ->toJpeg(80)

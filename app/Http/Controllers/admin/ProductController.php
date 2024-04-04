@@ -11,9 +11,14 @@ use App\Models\ProductImage;
 use App\Models\TempImage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Imagick\Driver;
 
 class ProductController extends Controller
-{
+{   public function index()
+    {
+
+    }
     public function create()
     {
         $data = [];
@@ -31,8 +36,8 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->image);
-        exit();
+        // dd($request->image);
+        // exit();
         $rules = [
             'title' => 'required',
             'slug' => 'required|unique:products',
@@ -69,6 +74,10 @@ class ProductController extends Controller
             $product->save();
 
 
+
+
+
+
             // save gallery image
             if(!empty($request->image_array)) {
                 foreach ($request->image_array as $temp_image_id) {
@@ -77,17 +86,36 @@ class ProductController extends Controller
                     $ext = last($extArray);
 
                     $productImage = new ProductImage();
-                    $productImage->product_id = $product->id;
+                    // $productImage->product_id = $product->id;
                     $productImage->product_id = $product->id;
                     $productImage->image = 'NULL';
                     $productImage->save();
-                    $productImage = $product->id.'-'.$productImage->id.'-'.time().'.'.$ext;
+
+                    $imageName = $product->id.'-'.$productImage->id.'-'.time().'.'.$ext;
                     $productImage->image = $imageName;
+                    $productImage->save();
+
+                    // generate product thumbnail
+                    // large image
+                    $manager = new ImageManager(new Driver());
+                    $sourcePath = public_path().'/tempImage/'.$tempImageInfo->name;
+                    $destPath = public_path().'/uploads/products/large/'.$tempImageInfo->name;
+                    $img = $manager->read($sourcePath);
+                    $img->resize(1400, null, function($constraint) {
+                    $constraint->aspectRatio();
+                    });
+                    $img->save($destPath);
+
+                    // small images
+                    $destPath = public_path().'/uploads/products/small/'.$tempImageInfo->name;
+                    $img = $manager->read($sourcePath);
+                    $img->fit(300, 300);
+                    $img->save($destPath);
                     // product_id => 4; product_image_id => 1
                     // 4-1-.jpg
                 }
             }
-            $request->session()->flash('success', 'Product added successfully');
+            $request->session()->flash('success', 'Product added successfully!');
 
             return response()->json([
                 'status' => true,
@@ -99,12 +127,6 @@ class ProductController extends Controller
                     'errors' => $validator->errors()
                 ]);
             }
-
-    }
-
-
-    public function index()
-    {
 
     }
 

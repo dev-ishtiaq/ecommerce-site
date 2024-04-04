@@ -121,4 +121,5 @@ class BrandController extends Controller
             'message' => 'Brand Deleted Successfully'
         ]);
     }
+   
 }
