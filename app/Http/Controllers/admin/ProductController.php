@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\admin;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\SubCategory;
@@ -9,7 +10,6 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\TempImage;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Imagick\Driver;
 
@@ -26,8 +26,8 @@ class ProductController extends Controller
         $subCategories = SubCategory::orderBy('name', 'ASC')->get();
         $brands = brand::orderBy('name', 'ASC')->get();
 
-        $data['subCategories'] = $subCategories;
         $data['categories'] = $categories;
+        $data['subCategories'] = $subCategories;
         $data['brands'] = $brands;
 
         return view('admin.product.create', $data);
@@ -56,20 +56,20 @@ class ProductController extends Controller
 
         if($validator->passes()) {
             $product = new Product;
-            $product->title = $request->title;
-            $product->slug = $request->slug;
-            $product->description = $request->description;
-            $product->price = $request->price;
+            $product->title         = $request->title;
+            $product->slug          = $request->slug;
+            $product->description   = $request->description;
+            $product->price         = $request->price;
             $product->compare_price = $request->compare_price;
-            $product->sku = $request->sku;
-            $product->barcode = $request->barcode;
-            $product->track_qty = $request->track_qty;
-            $product->qty = $request->qty;
-            $product->status = $request->status;
-            $product->category_id = $request->category;
+            $product->sku           = $request->sku;
+            $product->barcode       = $request->barcode;
+            $product->track_qty     = $request->track_qty;
+            $product->qty           = $request->qty;
+            $product->status        = $request->status;
+            $product->category_id   = $request->category;
             $product->sub_category_id = $request->sub_category;
-            $product->brand_id = $request->brand;
-            $product->is_featured = $request->is_featured;
+            $product->brand_id      = $request->brand;
+            $product->is_featured   = $request->is_featured;
             $product->save();
 
 
@@ -88,7 +88,7 @@ class ProductController extends Controller
                     // $productImage->product_id = $product->id;
                     $productImage->product_id = $product->id;
                     $productImage->image = 'NULL';
-                    $productImage->save();
+                    // $productImage->save();
 
                     $imageName = $product->id.'-'.$productImage->id.'-'.time().'.'.$ext;
                     $productImage->image = $imageName;

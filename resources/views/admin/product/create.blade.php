@@ -232,14 +232,14 @@
     $("#productForm").submit(function(event) {
         event.preventDefault();
         var formArray = $(this).serializeArray();
-        $("button[type='submit']").prop('disabled', true);
+        // $("button[type='submit']").prop('disabled', true);
         $.ajax({
             url: '{{route("product.store")}}',
             type: 'post',
             data: formArray,
             dataType: 'json',
             success: function(response) {
-                $("button[type='submit']").prop('disabled', false);
+                // $("button[type='submit']").prop('disabled', false);
                 if (response['status'] == true) {
                     $(".error").removeClass('invalid-feedback').html('');
                     $("input[type='text'].select, input[type='number']").removeClass('is-invalid');
@@ -293,8 +293,8 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(file, response) {
-            // $("#image_id").val(response.image_id);
-            //console.log(response)
+            $("#image_id").val(response.image_id);
+            console.log(response)
             var html = `<div class="col-md-3" id="image-row-(${response_image_id})">
                 <div class="card">
                         <input type="hidden" name="image_array[]" value="${response.image_id}">

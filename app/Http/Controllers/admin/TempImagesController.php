@@ -11,7 +11,7 @@ class TempImagesController extends Controller
 {
    public function create (Request $request)
    {
-      $image = $request->file('image');
+      $image = $request->image;
       if(!empty($image)) {
         $ext = $image->getClientOriginalExtension();
         $newName = time().'.'.$ext;
@@ -31,10 +31,8 @@ class TempImagesController extends Controller
         $destPath = public_path().'/tempImage/thumb/'.$newName;
 
         $img = $manager->read($sourcePath);
-        $img->resize(300, null, function($constraint) {
-        $constraint->aspectRatio();
-        });
-        
+        $img->fit(300, 250);
+
         $img->save($destPath);
 
         // ->toJpeg(80)
