@@ -1,3 +1,4 @@
+{{-- require './vendor/autoload.php'; --}}
 @extends('admin.layout.app')
 @section('main')
 <!-- Content Header (Page header) -->
@@ -61,9 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" id="product-gallery">
-
-                    </div>
+                    <div class="row" id="product-gallery"></div>
                     <div class="card mb-3">
                         <div class="card-body">
                             <h2 class="h4 mb-3">Pricing</h2>
@@ -243,7 +242,7 @@
                 if (response['status'] == true) {
                     $(".error").removeClass('invalid-feedback').html('');
                     $("input[type='text'].select, input[type='number']").removeClass('is-invalid');
-                    window.location.href = "{{route('product.index')}}";
+                    window.location.href = "{{route('product.create')}}";
                 } else {
                     $(".error").removeClass('invalid-feedback').html('');
                     $("input[type='text'].select, input[type='number']").removeClass('is-invalid');
@@ -255,11 +254,13 @@
                     })
                 }
             },
-            error: function(xhr, status, error) {
-                console.log(error);
+            error: function() {
+                console.log("something went wrong");
             }
         })
     });
+
+
     $("#category").change(function() {
         var category_id = $(this).val();
         $.ajax({
@@ -270,20 +271,29 @@
             },
             dataType: 'json',
             success: function(response) {
-                // console.log(response);
+                console.log(response);
                 $("sub_category").find("option").not(":first").remove();
                 $.each(response["subCategories"], function(key, item) {
                     $("#sub_category").append(
                         `<option value ='${item.id}'>${item.name}</option>`)
                 });
             },
-            error: function(xhr, status, error) {
-                // Handle errors
+            error: function() {
+                console.log("something went wrong");
             }
         });
     });
+
+
     Dropzone.autoDiscover = false;
     const dropzone = $("#image").dropzone({
+        init: function() {
+            this.on('addedfile', function(file) {
+                if (this.files.length > 1) {
+                    this.removeFile(this.files[0]);
+                }
+            });
+        },
         url: "{{ route('temp-images.create') }}",
         maxFiles: 10,
         paramName: 'image',
@@ -293,17 +303,15 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(file, response) {
-            $("#image_id").val(response.image_id);
-            console.log(response)
-            var html = `<div class="col-md-3" id="image-row-(${response_image_id})">
-                <div class="card">
-                        <input type="hidden" name="image_array[]" value="${response.image_id}">
-                            <img src="${response.ImagePath}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <a href="javascript:void(10)" onclick="deleteImage(${response.image_id})" class="btn btn-danger">Delete</a>
-                            </div>
-                        </div></div>`;
-            $("product-gallery").append(html);
+            // $("#image_id").val(response.image_id);
+            // console.log(response)
+                var html = `<div class="card">
+                                    <img src="${response.imagePath}" class="card-img-top" alt="">
+                                    <div class="card-body">
+                                        <a href="#" class="btn btn-danger">Delete</a>
+                                    </div>
+                            </div>`;
+                         $("#product-gallery").append(html);
         }
     });
 </script>

@@ -11,8 +11,8 @@ use App\Models\ProductImage;
 use App\Models\TempImage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Imagick\Driver;
-
+use Intervention\Image\Drivers\Gd\Driver;
+// use Intervention\Image\Drivers\Imagick\Driver;
 class ProductController extends Controller
 {   public function index()
     {
@@ -85,20 +85,23 @@ class ProductController extends Controller
                     $ext = last($extArray);
 
                     $productImage = new ProductImage();
-                    // $productImage->product_id = $product->id;
                     $productImage->product_id = $product->id;
                     $productImage->image = 'NULL';
-                    // $productImage->save();
+                    $productImage->save();
 
                     $imageName = $product->id.'-'.$productImage->id.'-'.time().'.'.$ext;
                     $productImage->image = $imageName;
                     $productImage->save();
 
-                    // generate product thumbnail
-                    // large image
-                    $manager = new ImageManager(new Driver());
+        // ==========  generate product thumbnail ==========
+
+        //==== large image ======
+
                     $sourcePath = public_path().'/tempImage/'.$tempImageInfo->name;
                     $destPath = public_path().'/uploads/products/large/'.$tempImageInfo->name;
+
+                    $manager = new ImageManager(new Driver());
+
                     $img = $manager->read($sourcePath);
                     $img->resize(1400, null, function($constraint) {
                     $constraint->aspectRatio();
@@ -110,8 +113,7 @@ class ProductController extends Controller
                     $img = $manager->read($sourcePath);
                     $img->fit(300, 300);
                     $img->save($destPath);
-                    // product_id => 4; product_image_id => 1
-                    // 4-1-.jpg
+
                 }
             }
             $request->session()->flash('success', 'Product added successfully!');
