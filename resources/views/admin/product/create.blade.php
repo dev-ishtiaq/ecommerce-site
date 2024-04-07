@@ -255,9 +255,9 @@
                     })
                 }
             },
-            error: function (xhr, status, error) {
-                        console.log(error);
-                    }
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
         })
     });
     $("#category").change(function() {
@@ -277,9 +277,9 @@
                         `<option value ='${item.id}'>${item.name}</option>`)
                 });
             },
-            error: function (xhr, status, error) {
-                        // Handle errors
-                    }
+            error: function(xhr, status, error) {
+                // Handle errors
+            }
         });
     });
     Dropzone.autoDiscover = false;
@@ -303,8 +303,6 @@
                                 <a href="javascript:void(10)" onclick="deleteImage(${response.image_id})" class="btn btn-danger">Delete</a>
                             </div>
                         </div></div>`;
-
-
             $("product-gallery").append(html);
         }
     });
