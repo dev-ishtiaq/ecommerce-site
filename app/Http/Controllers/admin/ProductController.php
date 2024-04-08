@@ -35,8 +35,8 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->image_array);
-        exit();
+        // dd($request->image_array);
+        // exit();
         $rules = [
             'title' => 'required',
             'slug' => 'required|unique:products',
@@ -112,7 +112,7 @@ class ProductController extends Controller
                     // small images
                     $destPath = public_path().'/uploads/products/small/'.$tempImageInfo->name;
                     $img = $manager->read($sourcePath);
-                    $img->fit(300, 300);
+                    $img->scale(300, 300);
                     $img->save($destPath);
 
                 }

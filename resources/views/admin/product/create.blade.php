@@ -289,7 +289,7 @@
     const dropzone = $("#image").dropzone({
         init: function() {
             this.on('addedfile', function(file) {
-                if (this.files.length > 1) {
+                if (this.files.length > 10) {
                     this.removeFile(this.files[0]);
                 }
             });
