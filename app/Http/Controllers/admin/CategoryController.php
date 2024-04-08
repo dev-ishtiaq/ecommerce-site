@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\TempImage;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
 
 class CategoryController extends Controller
 {
@@ -58,9 +60,7 @@ class CategoryController extends Controller
                 // create new manager instance with desired driver
                 $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
 
-                $manager = new ImageManager(
-                    new Intervention\Image\Drivers\Gd\Driver()
-                );
+                $manager = new ImageManager(new Driver());
                 $img = $manager->read($sPath);
                 $img->resize(300, 200);
 
