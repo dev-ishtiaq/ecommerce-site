@@ -35,8 +35,8 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->image);
-        // exit();
+        dd($request->image_array);
+        exit();
         $rules = [
             'title' => 'required',
             'slug' => 'required|unique:products',
@@ -87,7 +87,7 @@ class ProductController extends Controller
                     $productImage = new ProductImage();
                     $productImage->product_id = $product->id;
                     $productImage->image = 'NULL';
-                    
+
                     $productImage->save();
 
                     $imageName = $product->id.'-'.$productImage->id.'-'.time().'.'.$ext;

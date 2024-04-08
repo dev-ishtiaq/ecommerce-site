@@ -31,7 +31,6 @@ class TempImagesController extends Controller
         $destPath = public_path().'/tempImage/thumb/'.$newName;
 
         $manager = new ImageManager(new Driver());
-
         $img = $manager->read($sourcePath);
         $img->resize(300, 250);
 
@@ -45,7 +44,7 @@ class TempImagesController extends Controller
             'status' => true,
             'image_id' => $tempImage->id,
             'imagePath' => asset('/tempImage/thumb/'.$newName),
-            'message' => 'image uploaded successfully'
+            'message' => 'image uploaded successfully',
         ]);
 
 

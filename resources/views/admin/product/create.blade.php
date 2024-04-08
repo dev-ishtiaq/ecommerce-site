@@ -305,12 +305,15 @@
         success: function(file, response) {
             // $("#image_id").val(response.image_id);
             // console.log(response)
-                var html = `<div class="card">
+                var html = `<div class="col-md-3">
+                    <div class="card">
+                                    <input type="hidden" name="image_array[]" value="${response.image_id}">
                                     <img src="${response.imagePath}" class="card-img-top" alt="">
                                     <div class="card-body">
                                         <a href="#" class="btn btn-danger">Delete</a>
                                     </div>
-                            </div>`;
+                            </div>
+                    </div>`;
                          $("#product-gallery").append(html);
         }
     });
