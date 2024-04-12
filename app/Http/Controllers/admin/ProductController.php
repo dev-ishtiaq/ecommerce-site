@@ -16,7 +16,7 @@ use Intervention\Image\Drivers\Gd\Driver;
 class ProductController extends Controller
 {   public function index()
     {
-
+        return view('admin.product.list');
     }
     public function create()
     {
@@ -145,6 +145,6 @@ class ProductController extends Controller
     public function destroy()
     {
 
-        
+
     }
 }
