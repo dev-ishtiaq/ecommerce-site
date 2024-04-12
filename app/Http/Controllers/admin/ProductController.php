@@ -14,7 +14,7 @@ use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 // use Intervention\Image\Drivers\Imagick\Driver;
 class ProductController extends Controller
-{   public function index()
+{   public function index(Request $request)
     {
         $products = Product::latest();
         if(!empty($request->get('keyword'))){
@@ -25,7 +25,7 @@ class ProductController extends Controller
         $data['products'] =  $products;
         return view('admin.product.list', compact('products'));
     }
-    
+
     public function create()
     {
         $data = [];

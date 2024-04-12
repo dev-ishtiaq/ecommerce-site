@@ -8,7 +8,7 @@
                 <h1>PRoducts</h1>
             </div>
             <div class="col-sm-6 text-right">
-                <a href="{{route('categories.create')}}" class="btn btn-primary">New Product</a>
+                <a href="{{route('product.create')}}" class="btn btn-primary">New Product</a>
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
             <form action="" method="get">
                 <div class="card-header">
                     <div class="card-title">
-                        <button type="button" onclick="window.location.href='{{route('categories.index')}}'"
+                        <button type="button" onclick="window.location.href='{{route('product.index')}}'"
                             class="btn btn-default btn-sm">Reset</button>
                     </div>
                     <div class="card-tools">
@@ -51,14 +51,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if($categories->isNotEmpty())
-                        @foreach ($categories as $category)
+                        @if($products->isNotEmpty())
+                        @foreach ($products as $products)
+
+
                         <tr>
                             <td>{{$loop->index+1}}</td>
-                            <td>{{$category->name}}</td>
-                            <td>{{$category->slug}}</td>
+                            <td>{{$products->title}}</td>
+                            <td>{{$products->slug}}</td>
                             <td>
-                                @if ($category->status == 1)
+                                @if ($products->status == 1)
                                 <svg class="text-success-500 h-6 w-6 text-success" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                     aria-hidden="true">
@@ -74,7 +76,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{route('categories.edit', $category->id)}}">
+                                <a href="{{route('product.edit', $products->id)}}">
                                     <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path
@@ -82,7 +84,7 @@
                                         </path>
                                     </svg>
                                 </a>
-                                <a href="{{route('categories.destroy', $category->id)}}" onclick="deleteCategory({{$category->id}})"
+                                <a href="{{route('product.destroy', $products->id)}}" onclick="deleteProduct({{$products->id}})"
                                     class="text-danger w-4 h-4 mr-1">
                                     <svg wire:loading.remove.delay="" wire:target=""
                                         class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +107,7 @@
                 </table>
             </div>
             <div class="card-footer clearfix">
-                {{$categories->links()}}
+                {{$products->links()}}
                 {{-- <ul class="pagination pagination m-0 float-right">
                   <li class="page-item"><a class="page-link" href="#">«</a></li>
                   <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -124,8 +126,8 @@
 
 @section('customjs')
 <script>
-    function deleteCategory(id) {
-        var url = '{{route("categories.destroy","ID")}}';
+    function deleteProduct(id) {
+        var url = '{{route("products.destroy","ID")}}';
         var newUrl = url.replace("ID", id);
         if (confirm('Are you sure to delete this category!')) {
             $.ajax({
@@ -138,7 +140,7 @@
                 },
                 success: function(response) {
                         if (response["status"]) {
-                        window.location.href = "{{route('categories.index')}}";
+                        window.location.href = "{{route('products.index')}}";
                     }
 
                 }
