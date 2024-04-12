@@ -16,8 +16,16 @@ use Intervention\Image\Drivers\Gd\Driver;
 class ProductController extends Controller
 {   public function index()
     {
-        return view('admin.product.list');
+        $products = Product::latest();
+        if(!empty($request->get('keyword'))){
+            $products = $products->where('name', 'like', '%' .$request->get('keyword').'%' );
+        }
+
+        $products = $products->paginate(10);
+        $data['products'] =  $products;
+        return view('admin.product.list', compact('products'));
     }
+    
     public function create()
     {
         $data = [];
