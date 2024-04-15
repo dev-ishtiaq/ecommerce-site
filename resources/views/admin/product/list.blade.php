@@ -5,7 +5,7 @@
         @include('admin.message')
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>PRoducts</h1>
+                <h1>Pooducts</h1>
             </div>
             <div class="col-sm-6 text-right">
                 <a href="{{route('product.create')}}" class="btn btn-primary">New Product</a>
@@ -107,7 +107,7 @@
                 </table>
             </div>
             <div class="card-footer clearfix">
-                {{$product->links()}}
+                {{$products->links()}}
                 {{-- <ul class="pagination pagination m-0 float-right">
                   <li class="page-item"><a class="page-link" href="#">«</a></li>
                   <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -127,7 +127,7 @@
 @section('customjs')
 <script>
     function deleteProduct(id) {
-        var url = '{{route("products.destroy","ID")}}';
+        var url = '{{route("product.destroy","ID")}}';
         var newUrl = url.replace("ID", id);
         if (confirm('Are you sure to delete this category!')) {
             $.ajax({
@@ -140,7 +140,7 @@
                 },
                 success: function(response) {
                         if (response["status"]) {
-                        window.location.href = "{{route('products.index')}}";
+                        window.location.href = "{{route('product.index')}}";
                     }
 
                 }

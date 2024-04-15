@@ -16,14 +16,16 @@ use Intervention\Image\Drivers\Gd\Driver;
 class ProductController extends Controller
 {   public function index(Request $request)
     {
-        $products = Product::latest();
+        $products = Product::latest(id)->paginate(10);
         if(!empty($request->get('keyword'))){
-            $products = $products->where('name', 'like', '%' .$request->get('keyword').'%' );
+            $products = $products->where('title', 'like', '%' .$request->get('keyword').'%' );
         }
 
-        $products = $products->paginate(10);
+        // $products = $products->paginate(10);
         $data['products'] =  $products;
         return view('admin.product.list', compact('products'));
+
+
     }
 
     public function create()
@@ -152,7 +154,7 @@ class ProductController extends Controller
 
     public function destroy()
     {
-
+        
 
     }
 }
