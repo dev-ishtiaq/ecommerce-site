@@ -16,7 +16,7 @@ use Intervention\Image\Drivers\Gd\Driver;
 class ProductController extends Controller
 {   public function index(Request $request)
     {
-        $products = Product::latest(id)->paginate(10);
+        $products = Product::latest()->paginate(10);
         if(!empty($request->get('keyword'))){
             $products = $products->where('title', 'like', '%' .$request->get('keyword').'%' );
         }
@@ -154,7 +154,7 @@ class ProductController extends Controller
 
     public function destroy()
     {
-        
+
 
     }
 }
