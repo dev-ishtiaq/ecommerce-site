@@ -26,14 +26,15 @@
                 <div class="card-header">
                     <div class="card-tools">
                         <div class="input-group input-group" style="width: 250px;">
-                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                            <input type="text" value="{{Request::get('keyword')}}" name="keyword"
+                                class="form-control float-right" placeholder="Search">
 
                             <div class="input-group-append">
-                              <button type="submit" class="btn btn-default">
-                                <i class="fas fa-search"></i>
-                              </button>
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fas fa-search"></i>
+                                </button>
                             </div>
-                          </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
@@ -51,13 +52,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                             <tr>
                                 @if($products->isNotEmpty())
                                     @foreach ($products as $product)
+                                    @php
+                                        $productImage = $product->product_images->first();
+                                        
+                                    @endphp
                                     <tr>
-                                        <td>{{$product->id}}</td>
-                                        <td><img src="img/product-1.jpg" class="img-thumbnail" width="50" ></td>
+                                        <td>{{$loop->index+1}}</td>
+                                        <td>
+                                            @if(!empty($productImage->image))
+                                            <img src=" {{ asset('../uploads/product/small/'. $productImage->image) }} " class="img-thumbnail"  width="50">
+                                            {{-- <img src="../uploads/products/small/1713210693.jpg" class="img-thumbnail" width="50" > --}}
+
+                                            @endif
+                                        </td>
                                         <td><a href="#">{{$product->title}}</a></td>
                                         <td>${{$product->price}}</td>
                                         <td>{{$product->qty}} left in Stock</td>
@@ -122,7 +133,7 @@
     function deleteProduct(id) {
         var url = '{{route("product.destroy","ID")}}';
         var newUrl = url.replace("ID", id);
-        if (confirm('Are you sure to delete this category!')) {
+        if (confirm('Are you sure to delete this product!')) {
             $.ajax({
                 url: newUrl,
                 type: 'delete',

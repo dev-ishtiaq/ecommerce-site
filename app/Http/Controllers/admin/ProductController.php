@@ -16,14 +16,15 @@ use Intervention\Image\Drivers\Gd\Driver;
 class ProductController extends Controller
 {   public function index(Request $request)
     {
-        $products = Product::latest()->paginate(10);
-        if(!empty($request->get('keyword'))){
-            $products = $products->where('title', 'like', '%' .$request->get('keyword').'%' );
-        }
-
-        // $products = $products->paginate(10);
+        $products = Product::latest('id')->with('product_images')->paginate(10);
+        // dd($products);
         $data['products'] =  $products;
         return view('admin.product.list', compact('products'));
+
+
+        if(!empty($request->get('keyword'))){
+            $products = $products->where('name', 'like', '%' .$request->get('keyword').'%' );
+        }
 
 
     }
