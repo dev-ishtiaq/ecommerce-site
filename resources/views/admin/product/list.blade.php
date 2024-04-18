@@ -58,13 +58,12 @@
                                     @foreach ($products as $product)
                                     @php
                                         $productImage = $product->product_images->first();
-                                        
                                     @endphp
                                     <tr>
                                         <td>{{$loop->index+1}}</td>
                                         <td>
                                             @if(!empty($productImage->image))
-                                            <img src=" {{ asset('../uploads/product/small/'. $productImage->image) }} " class="img-thumbnail"  width="50">
+                                            <img src=" {{ asset('../uploads/product/small/'.$productImage->image) }} " class="img-thumbnail"  width="50">
                                             {{-- <img src="../uploads/products/small/1713210693.jpg" class="img-thumbnail" width="50" > --}}
 
                                             @endif

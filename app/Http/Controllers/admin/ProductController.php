@@ -14,7 +14,7 @@ use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 // use Intervention\Image\Drivers\Imagick\Driver;
 class ProductController extends Controller
-{   public function index(Request $request)
+{   public function index()
     {
         $products = Product::latest('id')->with('product_images')->paginate(10);
         // dd($products);
@@ -101,7 +101,8 @@ class ProductController extends Controller
 
                     $productImage->save();
 
-                    $imageName = $product->id.'-'.$productImage->id.'-'.time().'.'.$ext;
+                    // $imageName = $product->id.'-'.$productImage->id.'-'.time().'.'.$ext;
+                    $imageName = $tempImageInfo->name;
                     $productImage->image = $imageName;
                     $productImage->save();
 
