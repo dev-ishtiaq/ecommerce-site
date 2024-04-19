@@ -9,7 +9,7 @@
                 <h1>Create Product</h1>
             </div>
             <div class="col-sm-6 text-right">
-                <a href="products.html" class="btn btn-primary">Back</a>
+                <a href="{{route('product.index')}}" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
                                         <label for="title">Slug</label>
                                         <input type="text" readonly name="slug" id="slug" class="form-control"
                                             placeholder="Slug will add here automatically!">
-                                        <p class="error"></p>
+                                            <p class="error"></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -72,7 +72,7 @@
                                         <label for="price">Price</label>
                                         <input type="text" name="price" id="price" class="form-control"
                                             placeholder="Price">
-                                        <p class="error"></p>
+                                            <p class="error"></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -114,7 +114,7 @@
                                             <input class="custom-control-input" type="checkbox" id="track_qty"
                                                 name="track_qty" value="Yes" checked>
                                             <label for="track_qty" class="custom-control-label">Track Quantity</label>
-                                            <p class="error"></p>
+                                            <p></p>
                                         </div>
                                     </div>
                                     <div class="mb-3">
@@ -195,7 +195,7 @@
 
             <div class="pb-5 pt-3">
                 <button type="submit" class="btn btn-primary">Create</button>
-                <a href="products.html" class="btn btn-outline-dark ml-3">Cancel</a>
+                <a href="{{route('product.index')}}" class="btn btn-outline-dark ml-3">Cancel</a>
             </div>
         </div>
     </form>
@@ -238,14 +238,21 @@
             data: formArray,
             dataType: 'json',
             success: function(response) {
+
                 // $("button[type='submit']").prop('disabled', false);
+
                 if (response['status'] == true) {
+                    // $(".error").removeClass('invalid-feedback').html('');
+                    // $("input[type='text'],select, input[type='number']").removeClass('is-invalid');
+                    window.location.href = "{{route('product.index')}}";
+                }
+
+
+                else {
+                    var errors = response['errors'];
+
                     $(".error").removeClass('invalid-feedback').html('');
-                    $("input[type='text'].select, input[type='number']").removeClass('is-invalid');
-                    window.location.href = "{{route('product.create')}}";
-                } else {
-                    $(".error").removeClass('invalid-feedback').html('');
-                    $("input[type='text'].select, input[type='number']").removeClass('is-invalid');
+                    $("input[type='text'],select, input[type='number']").removeClass('is-invalid');
                     $.each(errors, function(key, value) {
                         $(`#${key}`).addClass('is-invalid')
                             .siblings('p')
@@ -253,6 +260,7 @@
                             .html(value);
                     })
                 }
+
             },
             error: function() {
                 console.log("something went wrong");

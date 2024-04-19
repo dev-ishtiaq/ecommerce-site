@@ -5,7 +5,7 @@
         @include('admin.message')
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Pooducts</h1>
+                <h1>Products</h1>
             </div>
             <div class="col-sm-6 text-right">
                 <a href="{{route('product.create')}}" class="btn btn-primary">New Product</a>
@@ -15,14 +15,14 @@
     <!-- /.container-fluid -->
 </section>
 <!-- Main content -->
-<div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
 
     <!-- Main content -->
     <section class="content">
         <!-- Default box -->
         <div class="container-fluid">
-            <div class="card col-md-12">
+            <div class="card">
                 <div class="card-header">
                     <div class="card-tools">
                         <div class="input-group input-group" style="width: 250px;">
@@ -64,13 +64,14 @@
                                         <td>
                                             @if(!empty($productImage->image))
                                             <img src=" {{ asset('uploads/products/small/'.$productImage->image) }} " class="img-thumbnail"  width="50">
-                                            {{-- <img src=" {{ asset('uploads/products/small/1713210693.jpg') }} " class="img-thumbnail"  width="50"> --}}
                                             {{-- <img src="../uploads/products/small/1713210693.jpg" class="img-thumbnail" width="50" > --}}
+                                            @else
 
+                                            <img src=" {{ asset('admin/img/default-150x150.png') }} " class="img-thumbnail"  width="50">
                                             @endif
                                         </td>
                                         <td><a href="#">{{$product->title}}</a></td>
-                                        <td>${{$product->price}}</td>
+                                        <td>{{$product->price}} BDT</td>
                                         <td>{{$product->qty}} left in Stock</td>
                                         <td>{{$product->sku}}</td>
                                         <td>
@@ -123,7 +124,7 @@
         <!-- /.card -->
     </section>
     <!-- /.content -->
-</div>
+
 <!-- /.content -->
 
 @endsection

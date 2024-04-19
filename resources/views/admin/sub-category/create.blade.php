@@ -89,7 +89,7 @@
             success: function(response) {
                 $('button[type=submit]').prop('disabled', false);
                 if (response["status"] == true) {
-                    window.location.href = "{{route('sub-categories.create')}}";
+                    window.location.href = "{{route('sub-categories.index')}}";
                     $("#name").removeClass('is-invalid')
                         .siblings('p')
                         .removeClass('invalid-feedback').html("");
