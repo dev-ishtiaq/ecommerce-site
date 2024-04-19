@@ -143,29 +143,13 @@ class ProductController extends Controller
             }
 
     }
-
-    public function edit(Request $request, $id)
+    public function edit (Request $request, $id)
     {
-        $data =[];
-        $categories = Category::orderBy('name', 'ASC')->get();
-        $subCategories = SubCategory::orderBy('name', 'ASC')->get();
-        $brands = brand::orderBy('name', 'ASC')->get();
-
-        $data['categories'] = $categories;
-        $data['subCategories'] = $subCategories;
-        $data['brands'] = $brands;
-
-            return view('admin.product.edit', $data);
+        return view('admin.product.edit');
     }
 
-    public function update()
-    {
-
-    }
-
-    public function destroy()
-    {
 
 
-    }
+
+
 }
