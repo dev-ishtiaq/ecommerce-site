@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductSubCategoryController;
 use App\Http\Controllers\admin\TempImagesController;
+use App\Http\Controllers\admin\ProductImageController;
 use Illuminate\Http\Request;
 
 /*
@@ -77,7 +78,9 @@ Route::group(['prefix' => 'admin'], function()
 
         // temp image
         Route::post('/upload-temp-image',[TempImagesController:: class, 'create'])->name('temp-images.create');
+        // product image save
         Route::post('/product-images/update',[ProductImageController:: class, 'update'])->name('product-images.update');
+        Route::delete('/product-images',[ProductImageController:: class, 'destroy'])->name('product-images.destroy');
 
 
 

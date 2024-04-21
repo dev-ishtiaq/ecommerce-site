@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 use App\Http\Controllers\Controller;
 
@@ -17,7 +18,7 @@ class ProductImageController extends Controller
         $image = $request->image;
         $ext = $image->getClientOriginalExtension();
         // $newName = time().'.'.$ext;
-        $sourcePath = $image->getImagePath();
+        $sourcePath = $image->getPathName();
 
         $productImage = new ProductImage();
         $productImage->product_id = $request->product_id;
@@ -33,7 +34,8 @@ class ProductImageController extends Controller
         $productImage->save();
 
         // large image
-        $destPath = public_path().'/uploads/products/large/'.$tempImageInfo->name;
+        $destPath = public_path().'/uploads/products/large/'.$imageName;
+        // $destPath = public_path().'/uploads/products/large/'.$tempImageInfo->name;
 
         $manager = new ImageManager(new Driver());
 
@@ -44,16 +46,37 @@ class ProductImageController extends Controller
         $img->save($destPath);
 
         // small images
-        $destPath = public_path().'/uploads/products/small/'.$tempImageInfo->name;
+        $destPath = public_path().'/uploads/products/small/'.$imageName;
+        // $destPath = public_path().'/uploads/products/small/'.$tempImageInfo->name;
         $img = $manager->read($sourcePath);
-        $img->scale(300, 300);
+        $img->resize(300, 300);
         $img->save($destPath);
 
-        return resoponse()->json([
+        return response()->json([
             'status' => true,
             'image_id' => $productImage->id,
             'imagePath' => asset('uploads/products/small/'.$productImage->image),
             'message' => 'Image saved successfully!',
+        ]);
+    }
+    public function destroy(Request $request)
+    {
+        $productImage = ProductImage::find($request->id);
+        if(empty($productImage)){
+            return response()->json([
+                'status' => false,
+                'message' => 'Image not found!',
+            ]);
+        }
+
+        File::delete(public_path('uploads/products/small/'.$productImage->image));
+        File::delete(public_path('uploads/products/large/'.$productImage->image));
+
+        $productImage->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Image deleted successfully!',
         ]);
     }
 }
