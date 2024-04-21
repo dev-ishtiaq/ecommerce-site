@@ -51,6 +51,8 @@ class ProductImageController extends Controller
 
         return resoponse()->json([
             'status' => true,
+            'image_id' => $productImage->id,
+            'imagePath' => asset('uploads/products/small/'.$productImage->image),
             'message' => 'Image saved successfully!',
         ]);
     }
