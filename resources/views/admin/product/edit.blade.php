@@ -312,16 +312,10 @@
     });
     Dropzone.autoDiscover = false;
     const dropzone = $("#image").dropzone({
-        init: function() {
-            this.on('addedfile', function(file) {
-                if (this.files.length > 10) {
-                    this.removeFile(this.files[0]);
-                }
-            });
-        },
-        url: "{{ route('temp-images.create') }}",
+        url: "{{ route('product-images.update') }}",
         maxFiles: 10,
         paramName: 'image',
+        params: {'product_id' : '{{$product->id}}'},
         addRemoveLinks: true,
         acceptedFiles: "image/jpeg,image/png,image/gif",
         headers: {

@@ -77,6 +77,7 @@ Route::group(['prefix' => 'admin'], function()
 
         // temp image
         Route::post('/upload-temp-image',[TempImagesController:: class, 'create'])->name('temp-images.create');
+        Route::post('/product-images/update',[ProductImageController:: class, 'update'])->name('product-images.update');
 
 
 

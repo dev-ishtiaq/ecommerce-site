@@ -108,8 +108,7 @@ class ProductController extends Controller
 
         // ==========  generate product thumbnail ==========
 
-        //==== large image ======
-
+                    //==== large image ======
                     $sourcePath = public_path().'/tempImage/'.$tempImageInfo->name;
                     $destPath = public_path().'/uploads/products/large/'.$tempImageInfo->name;
 
