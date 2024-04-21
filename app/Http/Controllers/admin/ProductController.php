@@ -143,10 +143,85 @@ class ProductController extends Controller
             }
 
     }
-    public function edit (Request $request, $id)
+    public function  edit(Request $request, $id)
     {
-        return view('admin.product.edit');
+        $product = Product::find($id);
+        if(empty($product)){
+            // $request->session()->flash('error', 'product not found!');
+            return redirect()->route('product.index')->with('error', 'product not found!');
+        }
+
+        // fetch product image
+        $productImages = ProductImage::where('product_id',$product->id)->get();
+
+        $categories = Category::orderBy('name', 'ASC')->get();
+        $SubCategories = SubCategory::where('category_id', $product->category_id)->get();
+        $brands = brand::orderBy('name', 'ASC')->get();
+
+        $data = [];
+        $data['product'] = $product;
+        $data['productImages'] = $productImages;
+        $data['categories'] = $categories;
+        $data['SubCategories'] = $SubCategories;
+        $data['brands'] = $brands;
+
+        return view('admin.product.edit', $data);
     }
+    public function update(Request $request, $id)
+    {
+        $product = Product::find($id);
+
+        $rules = [
+            'title' => 'required',
+            'slug' => 'required|unique:products,slug,'.$product->id.',id',
+
+            'price' => 'required|numeric',
+            'sku' => 'required|unique:products,sku,'.$product->id.',id',
+            'track_qty' => 'required|in:Yes,No',
+            'category' => 'required|numeric',
+            'is_featured' => 'required|in:Yes,No',
+
+        ];
+
+        if(!empty($request->track_qty) && $request->track_qty == 'Yes')
+        {
+            $rules['qty'] = 'required|numeric';
+        }
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->passes()) {
+            $product->title         = $request->title;
+            $product->slug          = $request->slug;
+            $product->description   = $request->description;
+            $product->price         = $request->price;
+            $product->compare_price = $request->compare_price;
+            $product->sku           = $request->sku;
+            $product->barcode       = $request->barcode;
+            $product->track_qty     = $request->track_qty;
+            $product->qty           = $request->qty;
+            $product->status        = $request->status;
+            $product->category_id   = $request->category;
+            $product->sub_category_id = $request->sub_category;
+            $product->brand_id      = $request->brand;
+            $product->is_featured   = $request->is_featured;
+            $product->save();
+
+
+            $request->session()->flash('success', 'Product updated successfully!');
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Product updated successfully!',
+            ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'errors' => $validator->errors()
+                ]);
+            }
+
+    }
+
 
 
 
