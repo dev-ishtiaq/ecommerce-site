@@ -229,10 +229,11 @@ class ProductController extends Controller
         $product = Product::find($id);
         if(empty($product)){
             return response()->json([
-                'status' = false,
-                
+                'status' => false,
+                'notFound' =>true,
             ]);
         }
+        
     }
 
 
