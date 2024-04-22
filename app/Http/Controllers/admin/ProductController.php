@@ -224,6 +224,16 @@ class ProductController extends Controller
             }
 
     }
+    public function destroy($id, Request $request)
+    {
+        $product = Product::find($id);
+        if(empty($product)){
+            return response()->json([
+                'status' = false,
+                
+            ]);
+        }
+    }
 
 
 
