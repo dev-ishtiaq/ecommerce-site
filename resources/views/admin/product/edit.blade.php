@@ -178,10 +178,10 @@
                                 <label for="category">Sub category</label>
                                 <select name="sub_category" id="sub_category" class="form-control">
                                     @if($categories->isNotEmpty())
-                                    @foreach($SubCategories as $SubCategory)
                                     <option value="">Select a Sub Category</option>
+                                    @foreach($SubCategories as $SubCategory)
                                     <option {{($product->sub_category_id == $SubCategory->id) ? 'selected' : ''}}
-                                        value="{{$SubCategory->id}}">{{$SubCategory->name}}</option>
+                                        value="{{$SubCategory->id}}{{$SubCategory->name}}"></option>
 
                                     @endforeach
                                     @endif
@@ -299,7 +299,7 @@
             dataType: 'json',
             success: function(response) {
                 console.log(response);
-                $("sub_category").find("option").not(":first").remove();
+                $("#sub_category").find("option").not(":first").remove();
                 $.each(response["subCategories"], function(key, item) {
                     $("#sub_category").append(
                         `<option value ='${item.id}'>${item.name}</option>`)

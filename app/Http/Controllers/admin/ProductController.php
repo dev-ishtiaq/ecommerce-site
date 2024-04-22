@@ -12,6 +12,10 @@ use App\Models\TempImage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+
+
+
+
 // use Intervention\Image\Drivers\Imagick\Driver;
 class ProductController extends Controller
 {   public function index()

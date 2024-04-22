@@ -274,16 +274,14 @@
         $.ajax({
             url: '{{route("product-subcategories.index")}}',
             type: 'get',
-            data: {
-                category_id: category_id
-            },
+            data: {category_id: category_id},
             dataType: 'json',
             success: function(response) {
                 console.log(response);
-                $("sub_category").find("option").not(":first").remove();
+                $("#sub_category").find("option").not(":first").remove();
                 $.each(response["subCategories"], function(key, item) {
                     $("#sub_category").append(
-                        `<option value ='${item.id}'>${item.name}</option>`)
+                        `<option ='${item.id}'>${item.name}</option>`)
                 });
             },
             error: function() {
