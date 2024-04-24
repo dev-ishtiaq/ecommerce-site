@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\TempImage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
@@ -86,10 +87,6 @@ class ProductController extends Controller
             $product->brand_id      = $request->brand;
             $product->is_featured   = $request->is_featured;
             $product->save();
-
-
-
-
 
 
             // save gallery image
@@ -228,17 +225,29 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         if(empty($product)){
+            $request->session()->flash('error','product not found!');
             return response()->json([
                 'status' => false,
                 'notFound' =>true,
             ]);
         }
-        
+        $productImages = ProductImage::where('product_id',$id);
+
+        if(!empty($productImages)){
+            foreach($productImages as $productImage){
+                File::delete(public_path('uploads/products/large'.$productImage->image));
+                File::delete(public_path('uploads/products/small'.$productImage->image));
+            }
+            ProductImage::where('product_id',$id)->delete();
+
+        }
+        $product->delete();
+
+        $request->session()->flash('success','product deeleted successfully!');
+
+        return response()->json([
+            'status' => true,
+            'message' =>'product deleted successfully!',
+        ]);
     }
-
-
-
-
-
-
 }

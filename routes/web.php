@@ -71,6 +71,8 @@ Route::group(['prefix' => 'admin'], function()
         Route::post('/product',[ProductController:: class, 'store'])->name('product.store');
         Route::get('/product/{product}/edit',[ProductController:: class, 'edit'])->name('product.edit');
         Route::put('/product/{product}',[ProductController:: class, 'update'])->name('product.update');
+        Route::delete('/product/{product}',[ProductController:: class, 'destroy'])->name('
+        ');
 
 
         // Product sub categories Routes
@@ -78,6 +80,7 @@ Route::group(['prefix' => 'admin'], function()
 
         // temp image
         Route::post('/upload-temp-image',[TempImagesController:: class, 'create'])->name('temp-images.create');
+
         // product image save
         Route::post('/product-images/update',[ProductImageController:: class, 'update'])->name('product-images.update');
         Route::delete('/product-images',[ProductImageController:: class, 'destroy'])->name('product-images.destroy');
