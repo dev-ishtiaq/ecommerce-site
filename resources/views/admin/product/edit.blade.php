@@ -181,7 +181,7 @@
                                     <option value="">Select a Sub Category</option>
                                     @foreach($SubCategories as $SubCategory)
                                     <option {{($product->sub_category_id == $SubCategory->id) ? 'selected' : ''}}
-                                        value="{{$SubCategory->id}}{{$SubCategory->name}}"></option>
+                                        value="{{$SubCategory->id}}">{{$SubCategory->name}}</option>
 
                                     @endforeach
                                     @endif
