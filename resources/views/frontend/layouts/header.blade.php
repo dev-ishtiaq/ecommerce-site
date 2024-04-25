@@ -2,7 +2,7 @@
 <html class="no-js" lang="en_AU" />
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title><?php echo (!empty($title)) ? 'Title-'.$title: 'Home'; ?></title>
+	<title>Laravel Shop</title>
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no" />
 
@@ -29,12 +29,13 @@
 	<meta name="twitter:image" content="" />
 	<meta name="twitter:image:alt" content="" />
 	<meta name="twitter:card" content="summary_large_image" />
-	
 
-	<link rel="stylesheet" type="text/css" href="css/slick.css" />
-	<link rel="stylesheet" type="text/css" href="css/slick-theme.css" />
-	<link rel="stylesheet" type="text/css" href="css/video-js.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css?v=<?php echo rand(111,999); ?>" />
+
+	<link rel="stylesheet" type="text/css" href="{{asset('frontend/css/slick.css')}}" />
+	<link rel="stylesheet" type="text/css" href="{{asset('frontend/css/slick-theme.css')}}" />
+	<link rel="stylesheet" type="text/css" href="{{asset('frontend/css/video-js.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('frontend/css/style.css')}}?v=<?php echo rand(111,999); ?>" />
+    {{-- ?v=<?php echo rand(111,999); ?> --}}
 
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,7 +47,7 @@
 </head>
 <body data-instant-intensity="mousedown">
 
-<div class="bg-light top-header">        
+<div class="bg-light top-header">
 	<div class="container">
 		<div class="row align-items-center py-3 d-none d-lg-flex justify-content-between">
 			<div class="col-lg-4 logo">
@@ -57,7 +58,7 @@
 			</div>
 			<div class="col-lg-6 col-6 text-left  d-flex justify-content-end align-items-center">
 				<a href="account.php" class="nav-link text-dark">My Account</a>
-				<form action="">					
+				<form action="">
 					<div class="input-group">
 						<input type="text" placeholder="Search For Products" class="form-control" aria-label="Amount (to the nearest dollar)">
 						<span class="input-group-text">
@@ -65,7 +66,7 @@
 					  	</span>
 					</div>
 				</form>
-			</div>		
+			</div>
 		</div>
 	</div>
 </div>
@@ -138,15 +139,15 @@
 							<li><a class="dropdown-item" href="#">Air Coolers</a></li>
 						</ul>
 					</li>
-					
-					
-      			</ul>      			
-      		</div>   
+
+
+      			</ul>
+      		</div>
 			<div class="right-nav py-0">
 				<a href="cart.php" class="ml-3 d-flex pt-2">
-					<i class="fas fa-shopping-cart text-primary"></i>					
+					<i class="fas fa-shopping-cart text-primary"></i>
 				</a>
-			</div> 		
+			</div>
       	</nav>
   	</div>
 </header>

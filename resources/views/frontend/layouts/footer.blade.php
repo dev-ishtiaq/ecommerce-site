@@ -16,7 +16,7 @@
 					<h3>Important Links</h3>
 					<ul>
 						<li><a href="about-us.php" title="About">About</a></li>
-						<li><a href="contact-us.php" title="Contact Us">Contact Us</a></li>						
+						<li><a href="contact-us.php" title="Contact Us">Contact Us</a></li>
 						<li><a href="#" title="Privacy">Privacy</a></li>
 						<li><a href="#" title="Privacy">Terms & Conditions</a></li>
 						<li><a href="#" title="Privacy">Refund Policy</a></li>
@@ -30,10 +30,10 @@
 					<ul>
 						<li><a href="#" title="Sell">Login</a></li>
 						<li><a href="#" title="Advertise">Register</a></li>
-						<li><a href="#" title="Contact Us">My Orders</a></li>						
+						<li><a href="#" title="Contact Us">My Orders</a></li>
 					</ul>
 				</div>
-			</div>			
+			</div>
 		</div>
 	</div>
 	<div class="copyright-area">
@@ -48,12 +48,13 @@
 		</div>
 	</div>
 </footer>
-<script src="js/jquery-3.6.0.min.js"></script>
-<script src="js/bootstrap.bundle.5.1.3.min.js"></script>
-<script src="js/instantpages.5.1.0.min.js"></script>
-<script src="js/lazyload.17.6.0.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/custom.js"></script>
+<script src="{{asset('frontend/js/jquery-3.6.0.min.js')}}"></script>
+<script src="{{asset('frontend/js/bootstrap.bundle.5.1.3.min.js')}}"></script>
+<script src="{{asset('frontend/js/instantpages.5.1.0.min.js')}}"></script>
+<script src="{{asset('frontend/js/lazyload.17.6.0.min.js')}}"></script>
+<script src="{{asset('frontend/js/slick.min.js')}}"></script>
+<script src="{{asset('frontend/js/custom.js')}}"></script>
+
 <script>
 window.onscroll = function() {myFunction()};
 

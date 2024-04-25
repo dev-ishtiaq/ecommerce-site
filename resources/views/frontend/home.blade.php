@@ -1,4 +1,4 @@
-@nclude('frontend.layouts.header')
+@include('frontend.layouts.header')
 <main>
     <section class="section-1">
         <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="false">
@@ -7,9 +7,9 @@
                     <!-- <img src="images/carousel-1.jpg" class="d-block w-100" alt=""> -->
 
                     <picture>
-                        <source media="(max-width: 799px)" srcset="images/carousel-1-m.jpg" />
-                        <source media="(min-width: 800px)" srcset="images/carousel-1.jpg" />
-                        <img src="images/carousel-1.jpg" alt="" />
+                        <source media="(max-width: 799px)" srcset="{{asset('frontend/images/carousel-1-m.jpg')}}"/>
+                        <source media="(min-width: 800px)" srcset="{{asset('frontend/images/carousel-1.jpg')}}" />
+                        <img src="{{asset('frontend/images/carousel-1.jpg')}}" alt="" />
                     </picture>
 
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
@@ -21,11 +21,10 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-
                     <picture>
-                        <source media="(max-width: 799px)" srcset="images/carousel-2-m.jpg" />
-                        <source media="(min-width: 800px)" srcset="images/carousel-2.jpg" />
-                        <img src="images/carousel-2.jpg" alt="" />
+                        <source media="(max-width: 799px)" srcset="{{asset('frontend/images/carousel-2-m.jpg')}}"/>
+                        <source media="(min-width: 800px)" srcset="{{asset('frontend/images/carousel-2.jpg')}}" />
+                        <img src="{{asset('frontend/images/carousel-2.jpg')}}" alt="" />
                     </picture>
 
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
@@ -38,11 +37,10 @@
                 </div>
                 <div class="carousel-item">
                     <!-- <img src="images/carousel-3.jpg" class="d-block w-100" alt=""> -->
-
                     <picture>
-                        <source media="(max-width: 799px)" srcset="images/carousel-3-m.jpg" />
-                        <source media="(min-width: 800px)" srcset="images/carousel-3.jpg" />
-                        <img src="images/carousel-2.jpg" alt="" />
+                        <source media="(max-width: 799px)" srcset="{{asset('frontend/images/carousel-3-m.jpg')}}"/>
+                        <source media="(min-width: 800px)" srcset="{{asset('frontend/images/carousel-3.jpg')}}" />
+                        <img src="{{asset('frontend/images/carousel-3.jpg')}}" alt="" />
                     </picture>
 
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
@@ -103,7 +101,7 @@
                 <div class="col-lg-3">
                     <div class="cat-card">
                         <div class="left">
-                            <img src="images/cat-1.jpg" alt="" class="img-fluid">
+                            <img src="{{asset('frontend/images/cat-1.jpg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="right">
                             <div class="cat-data">
@@ -116,7 +114,7 @@
                 <div class="col-lg-3">
                     <div class="cat-card">
                         <div class="left">
-                            <img src="images/cat-1.jpg" alt="" class="img-fluid">
+                            <img src="{{asset('frontend/images/cat-1.jpg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="right">
                             <div class="cat-data">
@@ -129,7 +127,7 @@
                 <div class="col-lg-3">
                     <div class="cat-card">
                         <div class="left">
-                            <img src="images/cat-1.jpg" alt="" class="img-fluid">
+                            <img src="{{asset('frontend/images/cat-1.jpg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="right">
                             <div class="cat-data">
@@ -142,7 +140,7 @@
                 <div class="col-lg-3">
                     <div class="cat-card">
                         <div class="left">
-                            <img src="images/cat-1.jpg" alt="" class="img-fluid">
+                            <img src="{{asset('frontend/images/cat-1.jpg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="right">
                             <div class="cat-data">
@@ -155,7 +153,7 @@
                 <div class="col-lg-3">
                     <div class="cat-card">
                         <div class="left">
-                            <img src="images/cat-1.jpg" alt="" class="img-fluid">
+                            <img src="{{asset('frontend/images/cat-1.jpg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="right">
                             <div class="cat-data">
@@ -168,7 +166,7 @@
                 <div class="col-lg-3">
                     <div class="cat-card">
                         <div class="left">
-                            <img src="images/cat-1.jpg" alt="" class="img-fluid">
+                            <img src="{{asset('frontend/images/cat-1.jpg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="right">
                             <div class="cat-data">
@@ -181,7 +179,7 @@
                 <div class="col-lg-3">
                     <div class="cat-card">
                         <div class="left">
-                            <img src="images/cat-1.jpg" alt="" class="img-fluid">
+                            <img src="{{asset('frontend/images/cat-1.jpg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="right">
                             <div class="cat-data">
@@ -194,7 +192,7 @@
                 <div class="col-lg-3">
                     <div class="cat-card">
                         <div class="left">
-                            <img src="images/cat-1.jpg" alt="" class="img-fluid">
+                            <img src="{{asset('frontend/images/cat-1.jpg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="right">
                             <div class="cat-data">
