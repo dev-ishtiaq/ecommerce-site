@@ -59,6 +59,15 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="showHome">Show On Home</label>
+                                <select class="form-control" name="showHome" id="showHome">
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -25,10 +25,10 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/', [FrontController:: class, 'index'])->name('home.index');
+Route::get('/', function () {
+    return view('welcome');
+});
+// Route::get('/', [FrontController:: class, 'index'])->name('home.index');
 
 
 Route::group(['prefix' => 'admin'], function()
