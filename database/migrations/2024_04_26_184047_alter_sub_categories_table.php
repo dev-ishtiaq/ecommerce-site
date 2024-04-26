@@ -11,19 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function(Blueprint $table){
-            $table->text('description')->change();
+        Schema::table('sub_categories', function(Blueprint $table){
+            $table->enum('showHome', ['Yes','No'])->after('status')->default('No');
         });
     }
 
     /**
      * Reverse the migrations.
      */
-
     public function down(): void
     {
-        Schema::table('products', function(Blueprint $table){
-            $table->string('description')->change();
+        Schema::table('sub_categories', function(Blueprint $table){
+            $table->dropColumn('showHome', ['Yes','No'])->after('status')->default('No');
         });
     }
 };
