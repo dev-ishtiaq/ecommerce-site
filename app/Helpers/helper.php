@@ -1,6 +1,7 @@
 <?php
 use App\Models\Category;
 function getCategoris(){
-    return Category::orderBy('name', 'ASC')->get();
+    return Category::orderBy('name', 'ASC')
+    ->where('showHome','Yes')->get();
 }
 ?>
