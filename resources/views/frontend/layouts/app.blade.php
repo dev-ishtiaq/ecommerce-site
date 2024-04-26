@@ -94,13 +94,13 @@
 						<button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 							{{$category->name}}
 						</button>
-						<ul class="dropdown-menu dropdown-menu-dark">
-							<li><a class="dropdown-item nav-link" href="#">Mobile</a></li>
-							<li><a class="dropdown-item nav-link" href="#">Tablets</a></li>
-							<li><a class="dropdown-item nav-link" href="#">Laptops</a></li>
-							<li><a class="dropdown-item nav-link" href="#">Speakers</a></li>
-							<li><a class="dropdown-item nav-link" href="#">Watches</a></li>
-						</ul>
+                        @if($category->sub_category->isNotEmpty())
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            @foreach($category->sub_category as $subCategory)
+							<li><a class="dropdown-item nav-link" href="#">{{$subCategory->name}}</a></li>
+                            @endforeach
+                        </ul>
+                        @endif
 					</li>
                     @endforeach
                     @endif

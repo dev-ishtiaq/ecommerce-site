@@ -2,6 +2,8 @@
 use App\Models\Category;
 function getCategoris(){
     return Category::orderBy('name', 'ASC')
-    ->where('showHome','Yes')->get();
+    ->with('sub_category')
+    ->where('showHome','Yes')
+    ->get();
 }
 ?>
