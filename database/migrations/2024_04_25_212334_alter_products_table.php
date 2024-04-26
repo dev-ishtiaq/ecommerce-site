@@ -11,15 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::table('products', function(Blueprint $table){
+            $tabe->text('description')->change();
+        });
     }
 
     /**
      * Reverse the migrations.
      */
-    
+
     public function down(): void
     {
-        //
+        Schema::table('products', function(Blueprint $table){
+            $tabe->string('description')->change();
+        });
     }
 };
