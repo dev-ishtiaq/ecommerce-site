@@ -63,7 +63,7 @@ class CategoryController extends Controller
 
                 $manager = new ImageManager(new Driver());
                 $img = $manager->read($sPath);
-                $img->resize(300, 200);
+                $img->resize(200,300);
 
                 $img->save($dPath);
 
@@ -153,7 +153,7 @@ class CategoryController extends Controller
                     $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
                     $manager = new ImageManager(new Driver());
                     $img = $manager->read($sPath);
-                    $img->resize(300, 200);
+                    $img->resize(250, 300);
 
                     $img->save($dPath);
 
@@ -197,6 +197,7 @@ class CategoryController extends Controller
 
 
         File::delete(public_path().'/uploads/category/'.$category->image);
+        File::delete(public_path().'/uploads/category/thumb/'.$category->image);
         $category->delete();
 
         $request->session()->flash('success', 'Category Deleted Successfully');
