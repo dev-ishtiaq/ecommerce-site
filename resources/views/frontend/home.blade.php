@@ -104,7 +104,39 @@
             <h2>Categories</h2>
         </div>
         <div class="row pb-3">
+            @if(getCategoris()->isNotEmpty())
+            @foreach (getCategoris() as $category)
             <div class="col-lg-3">
+                <div class="cat-card">
+                    <div class="left">
+                        @if($category->image != "")
+                        <img src="{{asset('uploads/category/thumb/'.$category->image)}}" alt="" class="img-fluid">
+                        @endif
+                    </div>
+                    <div class="right">
+                        <div class="cat-data">
+                            <h2>{{$category->name}}</h2>
+                            {{-- <p>100 Products</p> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            @endif
+            {{--<div class="col-lg-3">
+                <div class="cat-card">
+                    <div class="left">
+                        <img src="{{asset('frontend/images/cat-1.jpg')}}" alt="" class="img-fluid">
+                    </div>
+                    <div class="right">
+                        <div class="cat-data">
+                            <h2>Mens</h2>
+                            <p>100 Products</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col-lg-3">
                 <div class="cat-card">
                     <div class="left">
                         <img src="{{asset('frontend/images/cat-1.jpg')}}" alt="" class="img-fluid">
@@ -181,33 +213,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="cat-card">
-                    <div class="left">
-                        <img src="{{asset('frontend/images/cat-1.jpg')}}" alt="" class="img-fluid">
-                    </div>
-                    <div class="right">
-                        <div class="cat-data">
-                            <h2>Mens</h2>
-                            <p>100 Products</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="cat-card">
-                    <div class="left">
-                        <img src="{{asset('frontend/images/cat-1.jpg')}}" alt="" class="img-fluid">
-                    </div>
-                    <div class="right">
-                        <div class="cat-data">
-                            <h2>Mens</h2>
-                            <p>100 Products</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>

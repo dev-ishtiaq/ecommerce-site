@@ -52,7 +52,7 @@ class CategoryController extends Controller
                 $extArray = explode('.', $tempImage->name);
                 $ext = last($extArray);
 
-                $newImageName = $category->id.'.'.$ext;
+                $newImageName = $category->id.'-'.time().'.'.$ext;
 
                 $sPath = public_path().'/tempImage/'.$tempImage->name;
                 $dPath = public_path().'/uploads/category/'.$newImageName;
@@ -144,25 +144,25 @@ class CategoryController extends Controller
                     $ext = last($extArray);
 
                     $newImageName = $category->id.'-'.time().'.'.$ext;
-
                     $sPath = public_path().'/tempImage/'.$tempImage->name;
                     $dPath = public_path().'/uploads/category/'.$newImageName;
                     File::copy($sPath, $dPath);
 
                     // create new manager instance with desired driver
-                    // $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
 
-                    // $img = Image::make($sPath);
-                    // $img->fit(600, 700, function($constraint) {
-                    //     $constraint->upsize();
-                    // });
-                    // $img->save($dPath);
+                    $dPath = public_path().'/uploads/category/thumb/'.$newImageName;
+                    $manager = new ImageManager(new Driver());
+                    $img = $manager->read($sPath);
+                    $img->resize(300, 200);
+
+                    $img->save($dPath);
 
                     $category->image = $newImageName;
                     $category->save();
 
                     // delete old images
                     File::delete(public_path().'/uploads/category/'.$oldImage);
+                    File::delete(public_path().'/uploads/category/thumb/'.$oldImage);
                 }
 
                     $request->session()->flash('success', 'Category Updated Successfully');
