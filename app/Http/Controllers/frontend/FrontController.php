@@ -15,7 +15,7 @@ class FrontController extends Controller
                                 ->where('status', 1)
                                 ->take(4)
                                 ->get();
-                                
+
         $data['featuredProducts'] = $product;
 
         $latestProduct = Product::orderBy('id', 'DESC')
@@ -25,5 +25,6 @@ class FrontController extends Controller
         $data['latestProduct'] = $latestProduct;
 
         return view('frontend.home',$data);
+        
     }
 }
