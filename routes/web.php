@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\TempImagesController;
 use App\Http\Controllers\admin\ProductImageController;
 
 use App\Http\Controllers\frontend\FrontController;
+use App\Http\Controllers\frontend\ShopController;
 use Illuminate\Http\Request;
 
 /*
@@ -29,6 +30,7 @@ use Illuminate\Http\Request;
 //     return view('welcome');
 // });
 Route::get('/', [FrontController:: class, 'index'])->name('home.index');
+Route::get('/shop', [ShopController:: class, 'index'])->name('shop.index');
 
 
 Route::group(['prefix' => 'admin'], function()

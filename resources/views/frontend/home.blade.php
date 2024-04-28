@@ -1,5 +1,5 @@
 @extends('frontend.layouts.app')
-@section('main')
+@section('content')
 <section class="section-1">
     <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel"
         data-bs-interval="false">
