@@ -10,6 +10,6 @@ function getCategoris(){
     ->get();
 }
 function getBrand(){
-    return brand::orderBy('name', 'ASC');
+    return brand::orderBy('name', 'ASC')->get();
 }
 ?>
