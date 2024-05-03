@@ -30,7 +30,7 @@ use Illuminate\Http\Request;
 //     return view('welcome');
 // });
 Route::get('/', [FrontController:: class, 'index'])->name('home.index');
-Route::get('/shop', [ShopController:: class, 'index'])->name('shop.index');
+Route::get('/shop/{categorySlug?}/{subCategorySlug?}', [ShopController:: class, 'index'])->name('shop.index');
 
 
 Route::group(['prefix' => 'admin'], function()

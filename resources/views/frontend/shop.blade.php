@@ -32,15 +32,15 @@
                                     </button>
                                 </h2>
                                 @else
-                                <a href="" class="nav-item nav-link">{{$category->name}}</a>
-                                    
+                                <a href="{{route('shop.index', $category->slug)}}" class="nav-item nav-link">{{$category->name}}</a>
+
                                 @endif
                                 <div id="collapseOne-{{$key}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
                                     <div class="accordion-body">
                                         <div class="navbar-nav">
                                             @if($category->sub_category->isNotEmpty())
                                                 @foreach($category->sub_category as $SubCategory)
-                                                    <a href="" class="nav-item nav-link">{{$SubCategory->name}}</a>
+                                                    <a href="{{route('shop.index', [$category->slug, $SubCategory->slug])}}" class="nav-item nav-link">{{$SubCategory->name}}</a>
                                                 @endforeach
                                             @endif
                                         </div>
@@ -68,7 +68,7 @@
                                 </label>
                             </div>
                             @endforeach
-                        
+
                         @endif
                         </div>
                 </div>
@@ -135,7 +135,7 @@
                             <img class="cart-img-top" src="{{asset('uploads/products/small/'.$productImage->image)}}"
                                 altcart-="">
                             @else
-                            
+
                             <img class="cart-img-top" src="{{asset('admin/img/default-150x150.png')}}" alt="">
                         </a>
                             @endif
