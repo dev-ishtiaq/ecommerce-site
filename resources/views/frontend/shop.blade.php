@@ -27,21 +27,27 @@
                             <div class="accordion-item">
                                 @if($category->sub_category->isNotEmpty())
                                 <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne-{{$key}}" aria-expanded="false" aria-controls="collapseOne-{{$key}}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne-{{$key}}" aria-expanded="false"
+                                        aria-controls="collapseOne-{{$key}}">
                                         {{$category->name}}
                                     </button>
                                 </h2>
                                 @else
-                                <a href="{{route('shop.index', $category->slug)}}" class="nav-item nav-link">{{$category->name}}</a>
+                                <a href="{{route('shop.index', $category->slug)}}"
+                                    class="nav-item nav-link">{{$category->name}}</a>
 
                                 @endif
-                                <div id="collapseOne-{{$key}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+                                <div id="collapseOne-{{$key}}"
+                                    class="accordion-collapse collapse {{($categorySelected == $category->id) ? 'show' : ''}}"
+                                    aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
                                     <div class="accordion-body">
                                         <div class="navbar-nav">
                                             @if($category->sub_category->isNotEmpty())
-                                                @foreach($category->sub_category as $SubCategory)
-                                                    <a href="{{route('shop.index', [$category->slug, $SubCategory->slug])}}" class="nav-item nav-link">{{$SubCategory->name}}</a>
-                                                @endforeach
+                                            @foreach($category->sub_category as $SubCategory)
+                                            <a href="{{route('shop.index', [$category->slug, $SubCategory->slug])}}"
+                                                class="nav-item nav-link {{($categorySelected = $category->id) ? 'text-primary' : ''}}">{{$SubCategory->name}}</a>
+                                            @endforeach
                                             @endif
                                         </div>
                                     </div>
@@ -59,18 +65,19 @@
 
                 <div class="card">
                     <div class="card-body">
-                            @if(getBrand()->isNotEmpty())
-                                @foreach (getBrand() as $brand)
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" name="brand" value="{{$brand->id}}" id="brand-{{$brand->id}}">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    {{$brand->name}}
-                                </label>
-                            </div>
-                            @endforeach
+                        @if(getBrand()->isNotEmpty())
+                        @foreach (getBrand() as $brand)
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" name="brand" value="{{$brand->id}}"
+                                id="brand-{{$brand->id}}">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                {{$brand->name}}
+                            </label>
+                        </div>
+                        @endforeach
 
                         @endif
-                        </div>
+                    </div>
                 </div>
 
                 <div class="sub-title mt-5">
@@ -112,7 +119,8 @@
                         <div class="d-flex align-items-center justify-content-end mb-4">
                             <div class="ml-2">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-bs-toggle="dropdown">Sorting</button>
+                                    <button type="button" class="btn btn-sm btn-light dropdown-toggle"
+                                        data-bs-toggle="dropdown">Sorting</button>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="#">Latest</a>
                                         <a class="dropdown-item" href="#">Price High</a>
@@ -123,42 +131,42 @@
                         </div>
                     </div>
                     @if($products->isNotEmpty())
-                        @foreach ($products as $product)
-                        @php
-                        $productImage = $product->product_images->first();
-                        @endphp
-                        <div class="col-md-4">
-                            <div class="card product-card">
-                                <div class="product-image position-relative">
-                                    <a href="" class="product-img">
+                    @foreach ($products as $product)
+                    @php
+                    $productImage = $product->product_images->first();
+                    @endphp
+                    <div class="col-md-4">
+                        <div class="card product-card">
+                            <div class="product-image position-relative">
+                                <a href="" class="product-img">
                                     @if(!empty($productImage->image))
-                            <img class="cart-img-top" src="{{asset('uploads/products/small/'.$productImage->image)}}"
-                                altcart-="">
-                            @else
+                                    <img class="cart-img-top"
+                                        src="{{asset('uploads/products/small/'.$productImage->image)}}" altcart-="">
+                                    @else
 
-                            <img class="cart-img-top" src="{{asset('admin/img/default-150x150.png')}}" alt="">
-                        </a>
-                            @endif
-                                    <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
+                                    <img class="cart-img-top" src="{{asset('admin/img/default-150x150.png')}}" alt="">
+                                </a>
+                                @endif
+                                <a class="whishlist" href="222"><i class="far fa-heart"></i></a>
 
-                                    <div class="product-action">
-                                        <a class="btn btn-dark" href="#">
-                                            <i class="fa fa-shopping-cart"></i> Add To Cart
-                                        </a>
-                                    </div>
+                                <div class="product-action">
+                                    <a class="btn btn-dark" href="#">
+                                        <i class="fa fa-shopping-cart"></i> Add To Cart
+                                    </a>
                                 </div>
-                                <div class="card-body text-center mt-3">
-                                    <a class="h6 link" href="#">{{Str::limit($product->title, 20)}}</a>
-                                    <div class="price mt-2">
-                                        <span class="h5"><strong>BDT {{$product->price}}</strong></span>
-                                        @if($product->compare_price > 0)
-                                        <span class="h6 text-underline"><del>BDT {{$product->compare_price}}</del></span>
-                                        @endif
-                                    </div>
+                            </div>
+                            <div class="card-body text-center mt-3">
+                                <a class="h6 link" href="#">{{Str::limit($product->title, 20)}}</a>
+                                <div class="price mt-2">
+                                    <span class="h5"><strong>BDT {{$product->price}}</strong></span>
+                                    @if($product->compare_price > 0)
+                                    <span class="h6 text-underline"><del>BDT {{$product->compare_price}}</del></span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                    </div>
+                    @endforeach
                     @endif
                 </div>
             </div>

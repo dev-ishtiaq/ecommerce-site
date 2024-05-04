@@ -5,12 +5,15 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\SubCategory;
 use App\Models\brand;
 use App\Models\Product;
 class ShopController extends Controller
 {
     public function index (Request $request, $categorySlug = null, $subCategorySlug = null)
     {
+        $categorySelected = '';
+        $subCategorySelected = '';
         // not used, fetching from helper
         $categories = Category::orderBy('name', 'ASC')
                 ->with('sub_category')
@@ -21,18 +24,31 @@ class ShopController extends Controller
                 ->where('status',1)
                 ->get();
 
+        $products = Product::where('status', 1);
         // apply filter
-        $produccts = Product::where('status', 1)->get();
+        if(!empty($categorySlug)){
+            $category = Category::where('slug', $categorySlug)->first();
+            $products = $products->where('category_id', $category->id);
+            $categorySelected = $category->id;
+        }
+        if(!empty($subCategorySlug)){
+            $SubCategory = subCategory::where('slug', $subCategorySlug)->first();
+            $products = $products->where('sub_category_id', $SubCategory->id);
+            $subCategorySelected = $SubCategory->id;
+        }
 
+        $products = $products->orderBy('id', 'DESC');
+        $products = $products->get();
         // used on shop.blade.php
-        $products = Product::orderBy('id', 'DESC')
-        ->where('status',1)
-
-                ->get();
+        // $products = Product::orderBy('id', 'DESC')
+        // ->where('status',1)
+        //         ->get();
 
         $data['categories'] = $categories;
         $data['brands'] = $brands;
         $data['products'] = $products;
+        $data['categorySelected'] = $categorySelected;
+        $data['subCategorySelected'] = $subCategorySelected;
 
 
         return view('frontend.shop', $data);
