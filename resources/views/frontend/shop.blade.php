@@ -38,20 +38,21 @@
                                     class="nav-item nav-link">{{$category->name}}</a>
 
                                 @endif
+
+                                @if($category->sub_category->isNotEmpty())
                                 <div id="collapseOne-{{$key}}"
                                     class="accordion-collapse collapse {{($categorySelected == $category->id) ? 'show' : ''}}"
                                     aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
                                     <div class="accordion-body">
                                         <div class="navbar-nav">
-                                            @if($category->sub_category->isNotEmpty())
                                             @foreach($category->sub_category as $SubCategory)
                                             <a href="{{route('shop.index', [$category->slug, $SubCategory->slug])}}"
                                                 class="nav-item nav-link {{($categorySelected = $category->id) ? 'text-primary' : ''}}">{{$SubCategory->name}}</a>
                                             @endforeach
-                                            @endif
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                             @endforeach
                             @endif
