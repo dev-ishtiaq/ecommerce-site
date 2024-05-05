@@ -29,14 +29,12 @@
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne-{{$key}}" aria-expanded="false"
-                                        aria-controls="collapseOne-{{$key}}">
-                                        {{$category->name}}
+                                        aria-controls="collapseOne-{{$key}}">{{$category->name}}
                                     </button>
                                 </h2>
                                 @else
                                 <a href="{{route('shop.index', $category->slug)}}"
-                                    class="nav-item nav-link">{{$category->name}}</a>
-
+                                    class="nav-item nav-link {{($categorySelected == $category->id) ? 'text-primary' : ''}}">{{$category->name}}</a>
                                 @endif
 
                                 @if($category->sub_category->isNotEmpty())
@@ -47,7 +45,7 @@
                                         <div class="navbar-nav">
                                             @foreach($category->sub_category as $SubCategory)
                                             <a href="{{route('shop.index', [$category->slug, $SubCategory->slug])}}"
-                                                class="nav-item nav-link {{($subCategorySelected = $SubCategory->id) ? 'text-primary' : ''}}">{{$SubCategory->name}}</a>
+                                                class="nav-item nav-link {{($subCategorySelected == $SubCategory->id) ? 'text-primary' : ''}}">{{$SubCategory->name}}</a>
                                             @endforeach
                                         </div>
                                     </div>
