@@ -190,5 +190,6 @@ function myFunction() {
   }
 }
 </script>
+@yield('customJs')
 </body>
 </html>
