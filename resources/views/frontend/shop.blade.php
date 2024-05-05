@@ -47,7 +47,7 @@
                                         <div class="navbar-nav">
                                             @foreach($category->sub_category as $SubCategory)
                                             <a href="{{route('shop.index', [$category->slug, $SubCategory->slug])}}"
-                                                class="nav-item nav-link {{($categorySelected = $category->id) ? 'text-primary' : ''}}">{{$SubCategory->name}}</a>
+                                                class="nav-item nav-link {{($subCategorySelected = $SubCategory->id) ? 'text-primary' : ''}}">{{$SubCategory->name}}</a>
                                             @endforeach
                                         </div>
                                     </div>
