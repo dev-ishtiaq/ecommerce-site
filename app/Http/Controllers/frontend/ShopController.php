@@ -14,6 +14,13 @@ class ShopController extends Controller
     {
         $categorySelected = '';
         $subCategorySelected = '';
+        $brandsArray = [];
+        
+        if(!empty($request->get('brand'))){
+
+            $brandsArray = explode(',',$request->get('brand'));
+        }
+
         // not used, fetching from helper
         $categories = Category::orderBy('name', 'ASC')
                 ->with('sub_category')
@@ -49,6 +56,7 @@ class ShopController extends Controller
         $data['products'] = $products;
         $data['categorySelected'] = $categorySelected;
         $data['subCategorySelected'] = $subCategorySelected;
+        $data['brandsArray'] = $brandsArray;
 
 
         return view('frontend.shop', $data);

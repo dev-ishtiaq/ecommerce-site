@@ -64,10 +64,10 @@
 
                 <div class="card">
                     <div class="card-body">
-                        @if(getBrand()->isNotEmpty())
-                        @foreach (getBrand() as $brand)
+                        @if($brands->isNotEmpty())
+                        @foreach ($brands as $brand)
                         <div class="form-check mb-2">
-                            <input class="form-check-input brand-label" type="checkbox" name="brand[]" value="{{$brand->id}}"
+                            <input {{(in_array($brand->id, $brandsArray)) ? 'checked' : ''}} class="form-check-input brand-label" type="checkbox" name="brand[]" value="{{$brand->id}}"
                                 id="brand-{{$brand->id}}">
                             <label class="form-check-label" for="brand-{{$brand->id}}">
                                 {{$brand->name}}
@@ -181,7 +181,7 @@
 
 function apply_filters(){
     var brands = [];
-    
+
     $(".brand-label").each(function(){
         if($(this).is(":checked")  == true){
             brands.push($(this).val());
@@ -189,8 +189,8 @@ function apply_filters(){
     });
     console.log(brands.toString());
 
-    var url = '{{url()->current()}}?';
-    window.location.href = url + '&brand=' + brands.toString();
+    var url = '{{ url()->current() }}?';
+    window.location.href = url+'&brand='+brands.toString();
 }
 </script>
 @endsection
