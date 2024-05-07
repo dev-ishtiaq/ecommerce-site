@@ -181,13 +181,14 @@
 
 function apply_filters(){
     var brands = [];
+    
     $(".brand-label").each(function(){
         if($(this).is(":checked")  == true){
             brands.push($(this).val());
         }
     });
     console.log(brands.toString());
-    
+
     var url = '{{url()->current()}}?';
     window.location.href = url + '&brand=' + brands.toString();
 }
