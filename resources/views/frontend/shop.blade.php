@@ -186,8 +186,10 @@ function apply_filters(){
     var url = '{{ url()->current() }}?';
 
     url += '&price_min='+slider.result.from+'&price_max='+slider.result.to;
-
-    window.location.href = url+'&brand='+brands.toString();
+    if(brands.length > 0) {
+        url += '&brand='+brands.toString();
+    }
+    window.location.href = url;
 }
 </script>
 @endsection
