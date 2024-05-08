@@ -48,6 +48,9 @@ class ShopController extends Controller
         if($request->get('price_max') != '' && $request->get('price_min') != ''){
             if($request->get('price_max') ==  1000) {
 
+                $products = $products->whereBetween('price', [intval($request->get('price_min')), 10000]);
+            }
+            else {
                 $products = $products->whereBetween('price', [intval($request->get('price_min')),intval($request->get('price_max'))]);
             }
         }
