@@ -124,7 +124,7 @@ class ProductController extends Controller
                     // small images
                     $destPath = public_path().'/uploads/products/small/'.$tempImageInfo->name;
                     $img = $manager->read($sourcePath);
-                    $img->scale(300, 300);
+                    $img->resize(300, 300);
                     $img->save($destPath);
 
                 }
