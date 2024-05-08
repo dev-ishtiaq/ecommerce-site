@@ -46,8 +46,10 @@ class ShopController extends Controller
             $products = $products->whereIn('brand_id', $brandsArray);
         }
         if($request->get('price_max') != '' && $request->get('price_min') != ''){
+            if($request->get('price_max') ==  1000) {
 
-            $products = $products->whereBetween('price', [intval($request->get('price_min')),intval($request->get('price_max'))]);
+                $products = $products->whereBetween('price', [intval($request->get('price_min')),intval($request->get('price_max'))]);
+            }
         }
 
         $products = $products->orderBy('id', 'DESC');
