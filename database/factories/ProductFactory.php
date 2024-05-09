@@ -16,6 +16,19 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        
+        $title = fake()->unique()->name();
+        $slug = Str::slug($title);
+
+        $subCategories = [];
+        $subRandKey = array_rand($subCategories);
+
+        $brand = [];
+        $brandRandKey = array_rand($brand);
+
+        return [
+            'title' => $title,
+            'slug' => $slug,
+
+        ];
     }
 }
