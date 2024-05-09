@@ -28,7 +28,6 @@ class ProductFactory extends Factory
         return [
             'title' => $title,
             'slug' => $slug,
-
         ];
     }
 }
