@@ -148,6 +148,9 @@
                     </div>
                     @endforeach
                     @endif
+                    <div class="col-md-12 pt-5">
+                        {{$products->links()}}
+                    </div>
                 </div>
             </div>
         </div>

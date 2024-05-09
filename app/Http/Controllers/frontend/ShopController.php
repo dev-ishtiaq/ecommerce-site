@@ -67,7 +67,7 @@ class ShopController extends Controller
         } else {
             $products = $products->orderBy('id', 'DESC');
         }
-        $products = $products->get();
+        $products = $products->paginate(6);
         // used on shop.blade.php
         // $products = Product::orderBy('id', 'DESC')
         // ->where('status',1)
