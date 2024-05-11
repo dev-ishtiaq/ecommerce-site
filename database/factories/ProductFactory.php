@@ -22,7 +22,7 @@ class ProductFactory extends Factory
         $subCategories = [21,22];
         $subRandKey = array_rand($subCategories);
 
-        $brand = [];
+        $brand = [2,3];
         $brandRandKey = array_rand($brand);
 
         return [
@@ -30,6 +30,7 @@ class ProductFactory extends Factory
             'slug' => $slug,
             'category_id' => 121,
             'sub_category_id' => $subCategories,
+            'brand' => $brand,
         ];
     }
 }
