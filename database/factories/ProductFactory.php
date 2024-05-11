@@ -28,6 +28,8 @@ class ProductFactory extends Factory
         return [
             'title' => $title,
             'slug' => $slug,
+            'category_id' => ''
+            'sub_category_id' => $subCategories,
         ];
     }
 }
