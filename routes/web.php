@@ -33,6 +33,7 @@ Route::get('/', [FrontController:: class, 'index'])->name('home.index');
 Route::get('/shop/{categorySlug?}/{subCategorySlug?}', [ShopController:: class, 'index'])->name('shop.index');
 
 
+
 Route::group(['prefix' => 'admin'], function()
 {
     Route::group(['middleware' => 'admin.guest'], function()

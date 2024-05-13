@@ -86,4 +86,7 @@ class ShopController extends Controller
 
         return view('frontend.shop', $data);
     }
+    public function product($slug) {
+        echo $slug;
+    }
 }
