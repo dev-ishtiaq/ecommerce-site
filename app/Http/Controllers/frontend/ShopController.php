@@ -93,6 +93,6 @@ class ShopController extends Controller
             abort(402);
         }
         $data['product'] = $product;
-        return view('frontend.product', $product);
+        return view('frontend.product', $data);
     }
 }

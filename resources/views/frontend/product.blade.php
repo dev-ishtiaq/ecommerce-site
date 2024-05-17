@@ -4,9 +4,9 @@
     <div class="container">
         <div class="light-font">
             <ol class="breadcrumb primary-color mb-0">
-                <li class="breadcrumb-item"><a class="white-text" href="#">Home</a></li>
-                <li class="breadcrumb-item"><a class="white-text" href="#">Shop</a></li>
-                <li class="breadcrumb-item">Your product name</li>
+                <li class="breadcrumb-item"><a class="white-text" href="{{route('home.index')}}">Home</a></li>
+                <li class="breadcrumb-item"><a class="white-text" href="{{route('shop.index')}}">Shop</a></li>
+                <li class="breadcrumb-item">{{$product->title}}</li>
             </ol>
         </div>
     </div>
@@ -18,18 +18,13 @@
             <div class="col-md-5">
                 <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner bg-light">
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="images/product-1.jpg" alt="Image">
+                       @if($product->product_images)
+                       @foreach ($product->product_images as $key => $productImage)
+                        <div class="carousel-item {{($key == 0) ? 'active' : ''}}">
+                            <img class="w-100 h-100" src="{{asset('uploads/products/large/'.$productImage->image)}}" alt="Image">
                         </div>
-                        <div class="carousel-item active">
-                            <img class="w-100 h-100" src="images/product-2.jpg" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="images/product-3.jpg" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="images/product-4.jpg" alt="Image">
-                        </div>
+                       @endforeach
+                       @endif
                     </div>
                     <a class="carousel-control-prev" href="#product-carousel" data-bs-slide="prev">
                         <i class="fa fa-2x fa-angle-left text-dark"></i>
@@ -41,7 +36,7 @@
             </div>
             <div class="col-md-7">
                 <div class="bg-light right">
-                    <h1>Your Product Name Here</h1>
+                    <h1>{{$product->title}}</h1>
                     <div class="d-flex mb-3">
                         <div class="text-primary mr-2">
                             <small class="fas fa-star"></small>
@@ -52,10 +47,10 @@
                         </div>
                         <small class="pt-1">(99 Reviews)</small>
                     </div>
-                    <h2 class="price text-secondary"><del>$400</del></h2>
-                    <h2 class="price ">$300</h2>
+                    <h2 class="price text-secondary"><del>BDT {{$product->compare_price}}</del></h2>
+                    <h2 class="price ">BDT {{$product->price}}</h2>
 
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis officiis dolor aut nihil iste porro ullam repellendus inventore voluptatem nam veritatis exercitationem doloribus voluptates dolorem nobis voluptatum qui, minus facere.</p>
+                    {!! $product->short_description !!}
                     <a href="cart.php" class="btn btn-dark"><i class="fas fa-shopping-cart"></i> &nbsp;ADD TO CART</a>
                 </div>
             </div>
@@ -75,12 +70,10 @@
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                            <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, incidunt blanditiis suscipit quidem magnam doloribus earum hic exercitationem. Distinctio dicta veritatis alias delectus quaerat, quam sint ab nulla aperiam commodi. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, incidunt blanditiis suscipit quidem magnam doloribus earum hic exercitationem. Distinctio dicta veritatis alias delectus quaerat, quam sint ab nulla aperiam commodi. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, incidunt blanditiis suscipit quidem magnam doloribus earum hic exercitationem. Distinctio dicta veritatis alias delectus quaerat, quam sint ab nulla aperiam commodi.
-                            </p>
+                            <p>{!! $product->description !!}</p>
                         </div>
                         <div class="tab-pane fade" id="shipping" role="tabpanel" aria-labelledby="shipping-tab">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, incidunt blanditiis suscipit quidem magnam doloribus earum hic exercitationem. Distinctio dicta veritatis alias delectus quaerat, quam sint ab nulla aperiam commodi. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, incidunt blanditiis suscipit quidem magnam doloribus earum hic exercitationem. Distinctio dicta veritatis alias delectus quaerat, quam sint ab nulla aperiam commodi. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, incidunt blanditiis suscipit quidem magnam doloribus earum hic exercitationem. Distinctio dicta veritatis alias delectus quaerat, quam sint ab nulla aperiam commodi.</p>
+                        <p>{!! $product->shipping_returns !!}</p>
                         </div>
                         <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
 

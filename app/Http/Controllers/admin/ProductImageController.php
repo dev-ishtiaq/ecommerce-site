@@ -40,9 +40,7 @@ class ProductImageController extends Controller
         $manager = new ImageManager(new Driver());
 
         $img = $manager->read($sourcePath);
-        $img->resize(1400, null, function($constraint) {
-        $constraint->aspectRatio();
-        });
+        $img->resize(1000, 1200);
         $img->save($destPath);
 
         // small images

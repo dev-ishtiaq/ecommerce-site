@@ -118,7 +118,7 @@
                     <div class="col-md-4">
                         <div class="card product-card">
                             <div class="product-image position-relative">
-                                <a href="" class="product-img">
+                                <a href="{{route('front.product',$product->slug)}}" class="product-img">
                                     @if(!empty($productImage->image))
                                     <img class="cart-img-top"
                                         src="{{asset('uploads/products/small/'.$productImage->image)}}" altcart-="">
