@@ -91,8 +91,8 @@ class ShopController extends Controller
         $product = Product::where('slug',$slug)->with('product_images')->first();
         if($product == null) {
             abort(402);
-        } else {
-            return view('frontend.product');
         }
+        $data['product'] = $product;
+        return view('frontend.product', $product);
     }
 }
