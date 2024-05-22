@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{asset('admin/css/adminlte.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/dropzone/min/dropzone.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/summernote/summernote.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/css/custom.css')}}">
 </head>
 
@@ -177,6 +178,7 @@
     {{-- dropzone --}}
     <script src="{{asset('admin/plugins/dropzone/min/dropzone.min.js')}}"></script>
     <script src="{{asset('admin/plugins/summernote/summernote.min.js')}}"></script>
+    <script src="{{asset('admin/plugins/select2/js/select2.min.js')}}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('admin/js/demo.js')}}"></script>
     <script type="text/javascript">
