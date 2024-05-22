@@ -78,6 +78,7 @@ Route::group(['prefix' => 'admin'], function()
         Route::get('/product/{product}/edit',[ProductController:: class, 'edit'])->name('product.edit');
         Route::put('/product/{product}',[ProductController:: class, 'update'])->name('product.update');
         Route::delete('/product/{product}',[ProductController:: class, 'destroy'])->name('product.destroy');
+        Route::get('/get-products', [ProductController:: class, 'getProducts'])->name('product.getProducts');
 
 
         // Product sub categories Routes

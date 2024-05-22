@@ -208,6 +208,7 @@ class ProductController extends Controller
             $product->sub_category_id = $request->sub_category;
             $product->brand_id      = $request->brand;
             $product->is_featured   = $request->is_featured;
+            $product->related_products   = (!empty($request->related_products)) ? implode(',',$request->related_products) : '';
             $product->save();
 
 
@@ -252,6 +253,24 @@ class ProductController extends Controller
         return response()->json([
             'status' => true,
             'message' =>'product deleted successfully!',
+        ]);
+    }
+    public function getProducts(Request $request){
+        $tempProduct = [];
+        if($request->term != "") {
+            $products = Product::where('title','like','%'.$request->term.'%')->get();
+
+            if($products != null) {
+                foreach ($products as $product) {
+                    $tempProduct[] = array('id' => $product->id, 'text' => $product->title);
+
+                }
+            }
+        }
+        return response()->json([
+            'tags' => $tempProduct,
+            'status' => true,
+
         ]);
     }
 }
