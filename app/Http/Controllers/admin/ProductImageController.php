@@ -40,7 +40,7 @@ class ProductImageController extends Controller
         $manager = new ImageManager(new Driver());
 
         $img = $manager->read($sourcePath);
-        $img->resize(1000, 1200);
+        $img->resize(1000, 1000);
         $img->save($destPath);
 
         // small images
