@@ -238,7 +238,9 @@
                         <div class="card-body">
                             <h2 class="h4 mb-3">Related products</h2>
                             <div class="mb-3">
-                               
+                               <select name="related_product" id="related_product">
+                                
+                               </select>
                                 <p class="error"></p>
                             </div>
                         </div>
