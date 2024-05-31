@@ -95,7 +95,7 @@ class ShopController extends Controller
         $relatedProducts = [];
         // fetch related products
         if {$product->related_products != ''} {
-            
+          $productArray = explode(',', $product->related_products);
         }
 
 
