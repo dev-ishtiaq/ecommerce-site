@@ -94,8 +94,9 @@ class ShopController extends Controller
         }
         $relatedProducts = [];
         // fetch related products
-        if {$product->related_products != ''} {
+        if ($product->related_products != '') {
           $productArray = explode(',', $product->related_products);
+          $relatedProducts = Product::whereIn('id', $productArray)->get();
         }
 
 
