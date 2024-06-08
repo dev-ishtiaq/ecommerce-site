@@ -92,6 +92,9 @@ class ShopController extends Controller
         if($product == null) {
             abort(402);
         }
+
+
+        
         $relatedProducts = [];
         // fetch related products
         if ($product->related_products != '') {

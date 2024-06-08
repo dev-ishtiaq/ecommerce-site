@@ -239,11 +239,11 @@
                             <h2 class="h4 mb-3">Related products</h2>
                             <div class="mb-3">
                                <select multiple class="related-product form-control" name="related_products[]" id="related_products">
-                                value="{{$product->related_products}}
                                 @if(!empty($relatedProducts))
                                 @foreach ($relatedProducts as $relatedProduct)
-
+                                <option selected value="{{$relatedProduct->id}}">{{$relatedProduct->title}}</option>
                                 @endforeach
+                                @endif
                                </select>
                                 <p class="error"></p>
                             </div>
