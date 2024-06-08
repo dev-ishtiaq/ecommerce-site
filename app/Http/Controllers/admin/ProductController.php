@@ -160,6 +160,13 @@ class ProductController extends Controller
         $SubCategories = SubCategory::where('category_id', $product->category_id)->get();
         $brands = brand::orderBy('name', 'ASC')->get();
 
+        $relatedProducts = [];
+        // fetch related products
+        if ($product->related_products != '') {
+          $productArray = explode(',', $product->related_products);
+          $relatedProducts = Product::whereIn('id', $productArray)->get();
+        }
+        
         $data = [];
         $data['product'] = $product;
         $data['productImages'] = $productImages;

@@ -101,6 +101,7 @@ class ShopController extends Controller
 
 
         $data['product'] = $product;
+        $data['relatedProducts'] = $relatedProducts;
         return view('frontend.product', $data);
     }
 }
