@@ -166,13 +166,14 @@ class ProductController extends Controller
           $productArray = explode(',', $product->related_products);
           $relatedProducts = Product::whereIn('id', $productArray)->get();
         }
-        
+
         $data = [];
         $data['product'] = $product;
         $data['productImages'] = $productImages;
         $data['categories'] = $categories;
         $data['SubCategories'] = $SubCategories;
         $data['brands'] = $brands;
+        $data['relatedProducts'] = $relatedProducts;
 
         return view('admin.product.edit', $data);
     }
