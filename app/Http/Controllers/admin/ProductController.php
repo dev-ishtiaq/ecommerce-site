@@ -164,7 +164,7 @@ class ProductController extends Controller
         // fetch related products
         if ($product->related_products != '') {
           $productArray = explode(',', $product->related_products);
-          $relatedProducts = Product::whereIn('id', $productArray)->get();
+          $relatedProducts = Product::whereIn('id', $productArray)->with('product_images')->get();
         }
 
         $data = [];
