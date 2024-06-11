@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\ProductImageController;
 
 use App\Http\Controllers\frontend\FrontController;
 use App\Http\Controllers\frontend\ShopController;
+use App\Http\Controllers\CartController;
 use Illuminate\Http\Request;
 
 /*
@@ -32,6 +33,8 @@ use Illuminate\Http\Request;
 Route::get('/', [FrontController:: class, 'index'])->name('home.index');
 Route::get('/shop/{categorySlug?}/{subCategorySlug?}', [ShopController:: class, 'index'])->name('shop.index');
 Route::get('/product/{slug}', [ShopController:: class, 'product'])->name('front.product');
+Route::get('/cart', [CartController:: class, 'cart'])->name('front.cart');
+Route::post('/add-to-cart', [CartController:: class, 'addToCart'])->name('front.addToCart');
 
 
 Route::group(['prefix' => 'admin'], function()
