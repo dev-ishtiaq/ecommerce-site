@@ -3,12 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
 {
-    public function addToCart() {
+    public function addToCart(Request $request) {
+        // Cart::add('293ad','Product 1', 1, 9.00);
 
+        $product = Product::find($request->id);
+        if($product == null) {
+            return response()->json([
+                'status' => 'false',
+                'message' => 'Record not found',
+            ]);
+        }
     }
 
     public function cart() {
