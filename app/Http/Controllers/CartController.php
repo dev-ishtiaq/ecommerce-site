@@ -19,6 +19,13 @@ class CartController extends Controller
                 'message' => 'Record not found',
             ]);
         }
+
+        if(Cart::count() > 0) {
+
+        } else {
+            // cart is empty
+            Cart::add($product->id,$product->title, 1, $product->price, ['productImage']);
+        }
     }
 
     public function cart() {
