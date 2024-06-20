@@ -24,7 +24,7 @@ class CartController extends Controller
 
         } else {
             // cart is empty
-            Cart::add($product->id,$product->title, 1, $product->price, ['productImage' => $product->product_images()->first()]);
+            Cart::add($product->id,$product->title, 1, $product->price, ['productImage' => (!empty($product->product_images)) ? $product->product_images()->first() : '']);
         }
     }
 
