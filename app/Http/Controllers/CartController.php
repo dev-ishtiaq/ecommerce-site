@@ -21,14 +21,26 @@ class CartController extends Controller
         }
 
         if(Cart::count() > 0) {
-
+            echo 'product already in cart';
+            
         } else {
+            echo "cart is empty now add a product";
             // cart is empty
-            Cart::add($product->id,$product->title, 1, $product->price, ['productImage' => (!empty($product->product_images)) ? $product->product_images()->first() : '']);
+            Cart::add($product->id, $product->title, 1, $product->price, [
+                'productImage' => (!empty($product->product_images)) ?
+                $product->product_images->first() : '']);
+
+            $status = true;
+            $message = $product->title." added in cart";
         }
+        return response()->json([
+            'status' => $status,
+            'message' => $message,
+            ]);
     }
 
     public function cart() {
+        dd(Cart::content());
         return view('frontend.cart');
     }
 }

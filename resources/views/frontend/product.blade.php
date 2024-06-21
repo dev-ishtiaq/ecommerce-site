@@ -139,7 +139,7 @@
 @section('customJs')
 <script type="text/javascript">
     function addToCart(id) {
-        alert(id);
+    
         $.ajax({
             url: '{{route("front.addToCart")}}',
             type: 'post',
