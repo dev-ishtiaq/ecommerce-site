@@ -21,8 +21,10 @@ class CartController extends Controller
         }
 
         if(Cart::count() > 0) {
-            echo 'product already in cart';
-            
+            // echo 'product already in cart';
+            // found in cart
+            // check if this product already in cart
+            // if product not found in cart
         } else {
             echo "cart is empty now add a product";
             // cart is empty
