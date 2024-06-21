@@ -25,6 +25,15 @@ class CartController extends Controller
             // found in cart
             // check if this product already in cart
             // if product not found in cart
+
+            $cartContent = Cart::content();
+            $productAlreadyeexist = false;
+            foreach ($cartContent as $item) {
+                if($item->id == $product->id){
+                    
+                }
+            }
+
         } else {
             echo "cart is empty now add a product";
             // cart is empty
