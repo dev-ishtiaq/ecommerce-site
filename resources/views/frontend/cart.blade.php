@@ -15,6 +15,14 @@
 <section class=" section-9 pt-4">
     <div class="container">
         <div class="row">
+            @if(Session::has('success'))
+            <div class="col-md-12">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{Session::get('success')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            @endif
             <div class="col-md-8">
                 <div class="table-responsive">
                     <table class="table" id="cart">
@@ -139,7 +147,9 @@ function updateCart(rowId,qty) {
         data: {rowId:rowId, qty:qty},
         dataType: 'json',
         success: function(response) {
-
+            if(response.status == true) {
+                window.location.href= '{{route("front.cart")}}';
+            }
         }
     })
 }

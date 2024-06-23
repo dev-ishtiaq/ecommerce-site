@@ -70,6 +70,16 @@ class CartController extends Controller
         return view('frontend.cart', $data);
     }
     public function updateCart(Request $request) {
-        
+        $rowId = $request->rowId;
+        $qty = $request->qty;
+
+        Cart::update($rowId, 2);
+
+        $message = 'cart updated successfully!';
+        session()->flash('success',$message);
+        return response()->json([
+            'status' => true,
+            'message' => $message,
+        ]);
     }
 }
