@@ -69,4 +69,7 @@ class CartController extends Controller
         $data['cartContent'] = $cartContent;
         return view('frontend.cart', $data);
     }
+    public function updateCart(Request $request) {
+        
+    }
 }
