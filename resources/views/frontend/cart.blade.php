@@ -107,7 +107,8 @@
 </section>
 @endsection
 @section("customJs")
-$('.add').click(function(){
+<script>
+    $('.add').click(function(){
     var qtyElement = $(this).parent().prev(); // Qty Input
     var qtyValue = parseInt(qtyElement.val());
     if (qtyValue < 10) {
@@ -122,4 +123,5 @@ $('.sub').click(function(){
         qtyElement.val(qtyValue-1);
     }
 });
+</script>
 @endsection
